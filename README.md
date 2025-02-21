@@ -1,12 +1,20 @@
+-- Active: 1729414119558@@127.0.0.1@5432@diplom@public
 # diplom
 
 ## application description
 
-* git, python, venv
-* database: sqlite
-* backend: django, django-admin
+* windows 11, wsl 2, ubuntu 22.04
+* python 3.10.12, venv, pip
+* database: postgres 14.15, (sqlite3)
+* backend: django 5.0.1, django-admin
 
 ### workspace setup
+
+### environment preparation
+```shell
+
+sudo apt-get install postgresql postgresql-contrib
+```
 
 #### project preparation
 ```shell
@@ -33,8 +41,45 @@ mkdir backend
 django-admin startproject core backend
 ```
 
-#### initialize database and migrate
-* default ``db.sqlite3`` database is created automatically
+#### database setup
+* initially default ``db.sqlite3`` database is created automatically
+* initialize postges
+  * use previously configured ``.env`` variable values
+
+```shell
+psql postgres
+```
+
+```sql
+CREATE ROLE diplom_admin WITH LOGIN CREATEDB CREATEROLE PASSWORD 'diplom_password';
+ALTER ROLE diplom_admin SET client_encoding TO 'utf8';
+ALTER ROLE diplom_admin SET default_transaction_isolation TO 'read committed';
+ALTER ROLE diplom_admin SET timezone TO 'Europe/Tallinn';
+CREATE ROLE diplom_manager WITH LOGIN;
+ALTER ROLE diplom_manager SET client_encoding TO 'utf8';
+ALTER ROLE diplom_manager SET default_transaction_isolation TO 'read committed';
+ALTER ROLE diplom_manager SET timezone TO 'Europe/Tallinn';
+
+DROP DATABASE IF EXISTS diplom WITH (FORCE);
+CREATE DATABASE diplom WITH ENCODING 'UTF8' TEMPLATE=template0;
+
+GRANT SELECT, INSERT, UPDATE ON ALL TABLES IN SCHEMA public TO diplom_manager;
+ALTER DEFAULT PRIVILEGES GRANT SELECT, INSERT, UPDATE ON TABLES TO diplom_manager;
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO diplom_manager;
+ALTER DEFAULT PRIVILEGES GRANT USAGE, SELECT ON SEQUENCES TO diplom_manager;
+REVOKE GRANT OPTION FOR ALL PRIVILEGES ON ALL TABLES IN SCHEMA public FROM diplom_manager;
+ALTER DEFAULT PRIVILEGES REVOKE GRANT OPTION FOR ALL PRIVILEGES ON TABLES FROM diplom_manager;
+
+REVOKE CREATE ON SCHEMA public FROM PUBLIC;
+GRANT CREATE ON SCHEMA public TO diplom_admin;
+ALTER DATABASE diplom OWNER TO diplom_admin;
+```
+
+```shell
+psql -d postgresql://diplom_admin:diplom_password@localhost:5432/diplom
+```
+
+#### migrate database
 ```shell
 python backend/manage.py makemigrations 
 python backend/manage.py migrate
