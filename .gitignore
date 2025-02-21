@@ -169,3 +169,38 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+
+# Keep Examples #
+#################
+!.example
+
+# Logs and databases #
+######################
+*.log
+*.sqlite
+*.sqlite3
+
+# OS generated files #
+######################
+.DS_Store
+Thumbs.db
+
+# Python #
+##########
+*.pyc
+*.pyo
+__pycache__/
+.pytest_cache/
+
+# Dependency directories #
+#########################
+node_modules/
+.venv/
+venv/
+
+
+# Django migrations during DEV #
+################################
+migrations
+!migrations/__init__.py
