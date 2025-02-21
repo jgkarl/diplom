@@ -47,6 +47,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Extensions
     "debug_toolbar",
+    "import_export",
+    # Custom applications
+    "book",
 ]
 
 MIDDLEWARE = [

@@ -5,8 +5,8 @@
 
 * windows 11, wsl 2, ubuntu 22.04
 * python 3.10.12, venv, pip
-* database: postgres 14.15, (sqlite3)
-* backend: django 5.0.1, django-admin
+* database: postgres 14.15
+* backend: django 5.1.6, django-admin
 
 ### workspace setup
 
@@ -42,8 +42,8 @@ django-admin startproject core backend
 ```
 
 #### database setup
-* initially default ``db.sqlite3`` database is created automatically
-* initialize postges
+* initial ``db.sqlite3`` database is created automatically
+* initialize postgres
   * use previously configured ``.env`` variable values
 
 ```shell
