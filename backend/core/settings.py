@@ -92,10 +92,6 @@ DATABASES = {
         "HOST": os.getenv("POSTGRES_HOST"),  # Set to empty string for localhost.
         "PORT": os.getenv("POSTGRES_PORT"),  # Set to empty string for default.
     },
-    # 'example': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # },
 }
 
 
