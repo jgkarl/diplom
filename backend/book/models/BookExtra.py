@@ -38,7 +38,7 @@ class BookExtraInline(admin.TabularInline):
         },
         models.TextField: {
             "widget": admin.widgets.AdminTextareaWidget(
-                attrs={"style": "width: 95%;", "rows": 2}
+                attrs={"style": "width: 95%;", "rows": 1}
             )
         },
     }

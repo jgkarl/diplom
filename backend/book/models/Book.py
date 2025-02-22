@@ -49,7 +49,7 @@ class Book(AuditableModel):
     
     # model general getters
     def get_label(self):
-        return 'No name'
-    
+        return self.book_names.first().name if self.book_names.first() else 'No name' 
+        
     def __str__(self):
         return self.token + ' ' + self.published + ' ' + self.pages

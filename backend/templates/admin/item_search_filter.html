@@ -1,0 +1,48 @@
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css">
+{% load static %}
+<script src="//code.jquery.com/jquery-3.6.0.min.js" async></script>
+
+<script>
+// Wait for the window to load, including asynchronously loaded jQuery
+window.addEventListener("load", function() {
+    // jQuery is available here, so we can load the Select2 script
+    var select2Script = document.createElement("script");
+    select2Script.src = "//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js";
+    select2Script.async = true;
+    select2Script.onload = function() {
+        // Select2 script is loaded, you can now initialize it
+        $('#department-search-select').select2({
+            theme: "classic",
+            width: 'resolve',
+        });
+
+        $('#department-search-select').on('change', function () {
+            var departmentId = $(this).val();
+            var queryParams = { department: departmentId };
+            var url = window.location.pathname + '?' + $.param(queryParams);
+            window.location.href = url;
+        });
+    };
+
+    document.body.appendChild(select2Script);
+});
+</script>
+
+<h3>Filter Through {{ title }}</h3>
+<div id="department-search">
+    <select id="department-search-select" name="{{ parameter_name }}">
+        {% for value, display in choices %}
+            <option value="{{ value }}" {% if value == used_parameter %} selected="selected" {% endif %}>{{ display }}</option>
+        {% endfor %}
+    </select>
+</div>
+
+<style>
+    #department-search {
+        width: 100%;
+        margin: 0 10px 20px 10px;
+    }
+    #department-search-select {
+        width: 100%;
+    }
+</style>
