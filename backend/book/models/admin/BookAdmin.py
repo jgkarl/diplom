@@ -1,7 +1,7 @@
 from django.contrib import admin
 from import_export import resources
-from book.models.helpers import get_superuser
-from book.models.abstract import AuditableAdmin
+from core.helpers import get_superuser
+from core.models.abstract import AuditableAdmin
 from book.models import Book
 
 class BookResource(resources.ModelResource):

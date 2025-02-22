@@ -1,5 +1,5 @@
 from django.db import models
-from book.models.abstract import AuditableModel
+from core.models.abstract import AuditableModel
 
 class Book(AuditableModel):    
     token = models.CharField(max_length=64, null=True, blank=True)

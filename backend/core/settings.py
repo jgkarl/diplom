@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "import_export",
     # Custom applications
+    "classifier",
     "book",
 ]
 
@@ -88,7 +89,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://djangocentral.com/using-postgresql-with-django/
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "ENGINE": "django.db.backends.postgresql",
         "NAME": os.getenv("POSTGRES_NAME"),
         "USER": os.getenv("POSTGRES_USER"),
         "PASSWORD": os.getenv("POSTGRES_PASSWORD"),

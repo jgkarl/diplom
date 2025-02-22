@@ -1,1 +1,1 @@
-from book.models.Book import *
+from book.models.Book import Book

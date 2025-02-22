@@ -199,8 +199,11 @@ node_modules/
 .venv/
 venv/
 
+# Django migrations #
+#####################
+**/migrations/*
+!**/migrations/__init__.py
 
-# Django migrations during DEV #
-################################
-migrations
-!migrations/__init__.py
+# Import files #
+####################
+**/data/*

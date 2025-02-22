@@ -12,7 +12,6 @@
 
 ### environment preparation
 ```shell
-
 sudo apt-get install postgresql postgresql-contrib
 ```
 
