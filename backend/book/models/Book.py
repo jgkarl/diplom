@@ -1,5 +1,6 @@
 from django.db import models
 from core.models.abstract import AuditableModel
+from django.utils.translation import gettext_lazy as _
 
 class Book(AuditableModel):    
     token = models.CharField(max_length=64, null=True, blank=True)
@@ -13,7 +14,7 @@ class Book(AuditableModel):
 
     def get_field_labels():
         return {
-            'token': 'Tähis',
+            'token': _('Tähis'),
             'published': 'Kaitstud',
             'pages': 'Lehekülgi',
             'format': 'Vorming',

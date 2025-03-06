@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+from django.utils.translation import gettext_lazy as _
 
 # Load environment variables from .env file
 # Adds .env variables to os.environ, which os.getenv() reads from
@@ -60,6 +61,7 @@ MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -141,12 +143,14 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "et-ee"
 
 LANGUAGES = [
-    ("en", "English"),
-    ("et", "Estonian"),
+    ("en", _("English")),
+    ("et", _("Estonian")),
 ]
+
+LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
 
 TIME_ZONE = "Europe/Tallinn"
 
@@ -156,3 +160,4 @@ USE_TZ = True
 
 ## Tailwind important config
 TAILWIND_APP_NAME = "theme"
+TAILWIND_CSS_PATH = "dist/styles.css"
