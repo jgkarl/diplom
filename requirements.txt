@@ -5,6 +5,7 @@ django-appconf==1.1.0
 django-debug-toolbar==5.0.1
 django-import-export==4.3.6
 django-select2==8.3.0
+django-tailwind==3.8.0
 psycopg==3.2.4
 psycopg2-binary==2.9.10
 python-dotenv==1.0.1

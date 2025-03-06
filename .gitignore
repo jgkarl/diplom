@@ -207,3 +207,8 @@ venv/
 # Import files #
 ####################
 **/data/*
+
+# Static Dev files #
+####################
+**/static/*
+!**/static/.gitkeep
