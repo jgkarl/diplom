@@ -83,7 +83,7 @@ WSGI_APPLICATION = "core.wsgi.application"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "templates"],
+        "DIRS": [BASE_DIR / "theme/templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -156,7 +156,7 @@ LANGUAGES = [
     ("et", _("Estonian")),
 ]
 
-LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
+LOCALE_PATHS = [os.path.join(BASE_DIR, 'core/locale')]
 
 TIME_ZONE = "Europe/Tallinn"
 
