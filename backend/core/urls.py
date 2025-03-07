@@ -28,6 +28,7 @@ urlpatterns = i18n_patterns(
     path('', lambda request: HttpResponse('Hello, World!'), name='home'),
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
+    path('book/', include('book.urls')),
     
     # If no prefix is given, use the default language
     prefix_default_language=False

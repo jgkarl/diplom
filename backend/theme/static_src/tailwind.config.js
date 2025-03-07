@@ -19,6 +19,7 @@ module.exports = {
          * Main templates directory of the project (BASE_DIR/templates).
          * Adjust the following line to match your project structure.
          */
+        '!../../templates/admin/**/*.html',
         '../../templates/**/*.html',
 
         /*
