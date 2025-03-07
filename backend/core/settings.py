@@ -51,10 +51,13 @@ INSTALLED_APPS = [
     "django_select2",
     "tailwind", "theme",
     "django_browser_reload",
+    "rest_framework",
+    "drf_yasg",
     # Custom applications
     "classifier",
     "person",
     "book",
+    "api",
 ]
 
 MIDDLEWARE = [
