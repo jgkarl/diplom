@@ -5,8 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Books</title>
-    <script src="https://unpkg.com/htmx.org@2.0.3/dist/htmx.js" integrity="sha384-BBDmZzVt6vjz5YbQqZPtFZW82o8QotoM7RUp5xOxV3nSJ8u2pSdtzFAbGKzTlKtg" crossorigin="anonymous"></script>
+    <link rel="icon" href="{% static 'images/favicon.svg' %}" type="image/svg+xml">
     {% tailwind_css %}
+    {% block headscripts %} 
+    {% endblock %}
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
 {% block content %}

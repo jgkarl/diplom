@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "drf_yasg",
     "django_htmx",
+    "django_vite",
     # Custom applications
     "classifier",
     "person",
@@ -99,12 +100,13 @@ TEMPLATES = [
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = "backend/static/"
-STATIC_ROOT = "backend/static/"
+STATIC_URL = "static/"
+STATIC_ROOT = "static"
 
 # Additional locations of static files
 STATICFILES_DIRS = [
-    BASE_DIR / "backend/theme/static",
+    BASE_DIR / "theme/static",
+    "frontend/dist",
 ]
 
 # Default primary key field type
@@ -166,4 +168,11 @@ USE_TZ = True
 
 ## Tailwind important config
 TAILWIND_APP_NAME = "theme"
-TAILWIND_CSS_PATH = "dist/styles.css"
+TAILWIND_CSS_PATH = "assets/styles.css"
+
+DJANGO_VITE = {
+    "default": {
+        "dev_mode": DEBUG,
+        "manifest_path": os.path.join(BASE_DIR, "frontend", "dist", "manifest.json"),
+    },
+}

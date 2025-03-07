@@ -1,4 +1,12 @@
 {% extends 'layouts/base.html' %} 
+{% load django_vite %}
+
+{% block headscripts %}
+{{ block.super }}
+{% vite_hmr_client %}
+{% vite_asset 'frontend/src/main.js' %}
+{% endblock headscripts %}
 
 {% block content %} 
+<div id="app"></div>
 {% endblock content %}

@@ -210,5 +210,8 @@ venv/
 
 # Static Dev files #
 ####################
-**/static/*
+/static/**/*
 !**/static/.gitkeep
+
+.vscode/
+.idea/

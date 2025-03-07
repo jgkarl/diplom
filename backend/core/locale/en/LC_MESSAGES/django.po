@@ -19,12 +19,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: book/admin.py:7 book/admin.py:8
-msgid "Diplom Admin"
+msgid "Diplomas"
 msgstr ""
 
 #: book/admin.py:9
 msgid "Admin Panel"
-msgstr "Haldus"
+msgstr ""
 
 #: book/models/Book.py:17
 msgid "Token"

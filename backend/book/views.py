@@ -4,7 +4,7 @@ from book.models import Book
 # Create your views here.
 
 def home(request):
-    return redirect("bookList")
+    return render(request, "home.html")
 
 def list(request):
     models = Book.objects.all()[:10]
