@@ -5,6 +5,7 @@ Django==5.1.6
 django-appconf==1.1.0
 django-browser-reload==1.18.0
 django-debug-toolbar==5.0.1
+django-htmx==1.22.0
 django-import-export==4.3.6
 django-select2==8.3.0
 django-tailwind==3.8.0

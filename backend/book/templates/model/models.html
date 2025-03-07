@@ -1,0 +1,7 @@
+{% block content %}
+
+{% for model in models %} 
+{% include 'model/model.html' with model=model %} 
+{% endfor %}
+
+{% endblock content %}

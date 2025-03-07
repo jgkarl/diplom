@@ -1,0 +1,20 @@
+{% block content %}
+
+<div class="rounded shadow-lg p-4">
+    <div class="card-header py-2 flex flex-col gap-4">
+        <div class="font-heading font-semibold hover:underline text-center text-md">
+            <a href="{% url 'bookDetails' model.id  %}">{{ model.get_label }}</a>
+        </div>
+        <div class="w-full border-b border-gray-300"></div>
+        <div
+            class="font-medium hover:font-bold hover:underline text-md items-center cursor-pointer self-center"
+            hx-get="{% url 'bookDetails' model.id  %}"
+            hx-trigger="click"
+            hx-swap="outerHTML"
+        >
+            <div class="self-center">{{ model.authors|join:", " }}</div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

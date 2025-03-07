@@ -49,14 +49,16 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "import_export",
     "django_select2",
-    "tailwind", "theme",
+    "tailwind",
     "django_browser_reload",
     "rest_framework",
     "drf_yasg",
+    "django_htmx",
     # Custom applications
     "classifier",
     "person",
     "book",
+    "theme",
     "api",
 ]
 
@@ -71,6 +73,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_browser_reload.middleware.BrowserReloadMiddleware",
+    "django_htmx.middleware.HtmxMiddleware",
 ]
 
 ROOT_URLCONF = "core.urls"
