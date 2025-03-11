@@ -11,9 +11,9 @@ class BookExtra(AuditableModel):
     book = models.ForeignKey(Book, related_name="book_extras", on_delete=models.CASCADE)
     type = models.ForeignKey(
         "classifier.Item",
-        related_name="book_extra_types",
+        related_name="book_extra",
         on_delete=models.DO_NOTHING,
-        limit_choices_to={"type__identifier": "book_extra_type"},
+        limit_choices_to={"type__identifier": "book_extra"},
     )
 
     def __str__(self):

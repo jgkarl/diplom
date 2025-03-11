@@ -17,9 +17,9 @@ class BookCategoryResource(resources.ModelResource):
             book_instance = Book.objects.filter(id=book_input).first()
             if book_instance:
                 row['book'] = book_instance.id
-        type_input = row.get('type_id')
-        if type_input:
-            type_instance = Item.objects.filter(code=type_input, type__identifier='book_category').first()
+        category_name = row.get('category')
+        if category_name:
+            type_instance = Item.objects.filter(name=category_name, type__identifier='book_category').first()
             if type_instance:
                 row['type'] = type_instance.id
 

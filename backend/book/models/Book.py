@@ -2,7 +2,7 @@ from django.db import models
 from core.models.abstract import AuditableModel
 from django.utils.translation import gettext_lazy as _
 
-class Book(AuditableModel):    
+class Book(AuditableModel):
     token = models.CharField(max_length=64, null=True, blank=True)
     published = models.CharField(max_length=10, null=True, blank=True)
     pages = models.CharField(max_length=10, null=True, blank=True)

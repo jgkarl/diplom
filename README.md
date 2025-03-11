@@ -90,6 +90,20 @@ python backend/manage.py migrate
 python backend/manage.py createsuperuser --noinput
 ```
 
+#### import data
+```shell
+python backend/manage.py import classifier.admin.ItemResource backend/classifier/data/classifier.json --encoding utf8 --format json
+python backend/manage.py import person.Person backend/person/data/person.json --encoding utf8 --format json
+python backend/manage.py import book.Book backend/book/data/book.json --encoding utf8 --format json
+python backend/manage.py import book.BookName backend/book/data/book_name.json --encoding utf8 --format json
+```
+
+## application
+* create django superuser, ``--noinput`` means default ``.env`` values
+```shell
+python backend/manage.py createsuperuser --noinput
+```
+
 ### run django server
 ```shell
 python backend/manage.py runserver

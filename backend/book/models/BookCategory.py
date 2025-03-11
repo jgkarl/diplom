@@ -7,7 +7,7 @@ class BookCategory(AuditableModel):
     type = models.ForeignKey('classifier.Item', related_name='book_category_types', on_delete=models.DO_NOTHING, limit_choices_to={'type__identifier': 'book_category'} )
 
     class Meta:
-        verbose_name = 'TEST[Book Category]'
+        verbose_name = '[Book Category]'
         verbose_name_plural = '[Book Categories]'
             
     def __str__(self):
