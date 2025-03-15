@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     "book",
     "theme",
     "api",
+    "tag",
 ]
 
 MIDDLEWARE = [
