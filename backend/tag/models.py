@@ -30,3 +30,24 @@ class EmsKeywordCategory(models.Model):
 
     def __str__(self):
         return self.uuid.__str__()
+    
+class EmsKeywordSynonym(models.Model):
+    uuid = models.UUIDField(unique=True, default=uuid4, editable=False, null=False)
+    keyword = models.ForeignKey(EmsKeyword, related_name='synonyms', on_delete=models.CASCADE)
+    field_450 = models.TextField(null=True)
+    field_451 = models.TextField(null=True)
+    field_455 = models.TextField(null=True)
+    is_english = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.uuid.__str__()
+    
+class EmsKeywordRelation(models.Model):
+    uuid = models.UUIDField(unique=True, default=uuid4, editable=False, null=False)
+    keyword = models.ForeignKey(EmsKeyword, related_name='relations', on_delete=models.CASCADE)
+    related_keyword = models.ForeignKey(EmsKeyword, related_name='related_to', on_delete=models.CASCADE)
+    via_field = models.TextField(null=True)
+    relation_type = models.CharField(max_length=255, null=False)
+
+    def __str__(self):
+        return self.uuid.__str__()
