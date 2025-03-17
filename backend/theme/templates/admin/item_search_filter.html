@@ -1,5 +1,5 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css">
-{% load static %}
+{% load static i18n %}
 <script src="//code.jquery.com/jquery-3.6.0.min.js" async></script>
 
 <script>
@@ -12,8 +12,10 @@ window.addEventListener("load", function() {
     select2Script.onload = function() {
         // Select2 script is loaded, you can now initialize it
         $('#department-search-select').select2({
-            theme: "classic",
+            theme: "default",
             width: 'resolve',
+            allowClear: false,
+            // todo: translate
         });
 
         $('#department-search-select').on('change', function () {
@@ -28,7 +30,7 @@ window.addEventListener("load", function() {
 });
 </script>
 
-<h3>Filter Through {{ title }}</h3>
+<h3>{% translate "Filter" %}: {{ title }}</h3>
 <div id="department-search">
     <select id="department-search-select" name="{{ parameter_name }}">
         {% for value, display in choices %}
@@ -43,6 +45,6 @@ window.addEventListener("load", function() {
         margin: 0 10px 20px 10px;
     }
     #department-search-select {
-        width: 100%;
+        width: 90%;
     }
 </style>
