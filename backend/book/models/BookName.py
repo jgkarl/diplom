@@ -12,7 +12,6 @@ class BookName(AuditableModel):
     def __str__(self):
         return self.name
 
-
 class BookNameInline(admin.TabularInline):
     model = BookName
     extra = 0

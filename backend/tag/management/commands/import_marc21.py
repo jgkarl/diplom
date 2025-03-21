@@ -1,8 +1,7 @@
 import os
 from django.core.management.base import BaseCommand
-from pymarc import MARCReader, Record, Field
+from pymarc import MARCReader
 from tag.models import EmsKeyword, EmsCategory, EmsKeywordCategory
-from pymarc import exceptions as exc
 from django.db.models import Q
 
 class Command(BaseCommand):

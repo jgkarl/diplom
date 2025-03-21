@@ -95,20 +95,30 @@ python backend/manage.py createsuperuser --noinput
 python backend/manage.py import classifier.admin.ItemResource backend/classifier/data/classifier.json --encoding utf8 --format json
 python backend/manage.py import person.Person backend/person/data/person.json --encoding utf8 --format json
 python backend/manage.py import book.Book backend/book/data/book.json --encoding utf8 --format json
-python backend/manage.py import book.BookName backend/book/data/book_name.json --encoding utf8 --format json
+python backend/manage.py import book.models.resources.BookNameResource backend/book/data/book_name.json --encoding utf8 --format json
+python backend/manage.py import book.models.resources.BookPersonResource backend/book/data/book_person.json --encoding utf8 --format json
 ```
 
-## application
-* create django superuser, ``--noinput`` means default ``.env`` values
+### prepare backend (django) and frontend (vue)
 ```shell
-python backend/manage.py createsuperuser --noinput
+# install all node packages - includes backend/theme/static_src/package.json
+npm install 
+# starts `vite` server that delivers VueJS `frontend` application
+npm run dev
+# hot reload for django theme tailwindcss
+python backend/manage.py tailwind start
 ```
 
 ### run django server
 ```shell
+python backend/manage.py compilemessages
+python backend/manage.py collectstatic
+
 python backend/manage.py runserver
 ```
 
 ### default application access
-* [client on - localhost:8000](http://127.0.0.1:8000)
-* [admin on - localhost:8000/admin](http://127.0.0.1:8000/admin)
+* [django frontend - localhost:8000](http://127.0.0.1:8000)
+* [django-admin - localhost:8000/admin](http://127.0.0.1:8000/admin)
+* [django book - localhost:8000/book/list](http://127.0.0.1:8000/book/list)
+* [vue-vite book - localhost:8000/book](http://127.0.0.1:8000/book)

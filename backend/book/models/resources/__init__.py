@@ -1,0 +1,3 @@
+from book.models.resources.BookResource import BookResource
+from book.models.resources.BookNameResource import BookNameResource
+from book.models.resources.BookPersonResource import BookPersonResource

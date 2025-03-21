@@ -212,6 +212,8 @@ venv/
 ####################
 **/static/*
 
-
 .vscode/
 .idea/
+
+!**/*/.gitkeep
+**/*/package-lock.json
