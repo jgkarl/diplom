@@ -6,7 +6,7 @@ from classifier.models import Item
 class BookPersonResource(resources.ModelResource):
     class Meta:
         model = BookPerson
-        fields = ('book_id', 'person_id', 'relation')
+        # fields = ('book_id', 'person_id', 'relation_id')
         exclude = ('uuid', 'version', 'active', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at', 'deleted_by')
         
     def before_import_row(self, row, **kwargs):
@@ -14,14 +14,12 @@ class BookPersonResource(resources.ModelResource):
         if book_input:
             book_instance = Book.objects.filter(id=book_input).first()
             if book_instance:
-                row['book'] = book_instance
-                row.pop('book_id')
+                row['book'] = book_instance.id
         person_input = row.get('person_id')
         if person_input:
             person_instance = Person.objects.filter(id=person_input).first()
             if person_instance:
-                row['person'] = person_instance
-                row.pop('person_id')
+                row['person'] = person_instance.id
         type_input = row.get('relation')
         if type_input:
             type_instance = Item.objects.filter(code=type_input, type__identifier='book_person_relation').first()

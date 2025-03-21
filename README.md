@@ -93,11 +93,21 @@ python backend/manage.py createsuperuser --noinput
 #### import data
 ```shell
 python backend/manage.py import classifier.admin.ItemResource backend/classifier/data/classifier.json --encoding utf8 --format json
+
 python backend/manage.py import person.Person backend/person/data/person.json --encoding utf8 --format json
+
 python backend/manage.py import book.Book backend/book/data/book.json --encoding utf8 --format json
+
 python backend/manage.py import book.models.resources.BookNameResource backend/book/data/book_name.json --encoding utf8 --format json
+python backend/manage.py import book.models.resources.BookResumeResource backend/book/data/book_resumes.json --encoding utf8 --format json
+python backend/manage.py import book.models.resources.BookExtraResource backend/book/data/book_extras.json --encoding utf8 --format json
+python backend/manage.py import book.models.resources.BookLanguageResource backend/book/data/book_language.json --encoding utf8 --format json
+python backend/manage.py import book.models.resources.BookDepartmentResource backend/book/data/book_departments.json --encoding utf8 --format json
+python backend/manage.py import book.models.resources.BookCategoryResource backend/book/data/book_categories.json --encoding utf8 --format json
 python backend/manage.py import book.models.resources.BookPersonResource backend/book/data/book_person.json --encoding utf8 --format json
 ```
+
+python backend/manage.py import_marc21 
 
 ### prepare backend (django) and frontend (vue)
 ```shell
@@ -112,7 +122,7 @@ python backend/manage.py tailwind start
 ### run django server
 ```shell
 python backend/manage.py compilemessages
-python backend/manage.py collectstatic
+python backend/manage.py collectstatic --no-input
 
 python backend/manage.py runserver
 ```
