@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.contrib.sessions.models import Session
 
 def snake_to_sentence(snake_str):
     # Split the string by underscores
@@ -17,3 +18,8 @@ def get_superuser():
     User = get_user_model()
     superuser = User.objects.filter(is_superuser=True).first()
     return superuser
+
+def get_logged_user(request):    
+    if not request.user.is_authenticated or not request.user.is_staff:
+        return None
+    return request.user

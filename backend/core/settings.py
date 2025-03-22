@@ -152,20 +152,26 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = "et-ee"
+LANGUAGE_CODE = "en-us"
 
 LANGUAGES = [
-    ("en", _("English")),
-    ("et", _("Estonian")),
+    ("en", "English"),
+    ("et", "Eesti"),
 ]
 
-LOCALE_PATHS = [os.path.join(BASE_DIR, 'core/locale')]
+LOCALE_PATHS = [BASE_DIR / "core/locale"]
 
 TIME_ZONE = "Europe/Tallinn"
+USE_TZ = True
+# Set the date format for the Django admin
+DATE_FORMAT = "d.m.Y"  # Example: 2025-03-22
+DATETIME_FORMAT = "d.m.Y H:i:s"  # Example: 2025-03-22 14:30:00
+
+# Set the input formats for parsing dates and datetimes
+DATE_INPUT_FORMATS = ["%d.%m.%Y"]  # Example: 2025-03-22
+DATETIME_INPUT_FORMATS = ["%d.%m.%Y %H:%M:%S"]  # Example: 2025-03-22 14:30:00
 
 USE_I18N = True
-
-USE_TZ = True
 
 ## Tailwind important config
 TAILWIND_APP_NAME = "theme"
@@ -175,5 +181,20 @@ DJANGO_VITE = {
     "default": {
         "dev_mode": DEBUG,
         "manifest_path": os.path.join(BASE_DIR, "frontend", "dist", "manifest.json"),
+    },
+}
+
+# settings.py
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
     },
 }

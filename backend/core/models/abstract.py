@@ -2,17 +2,19 @@ from uuid import uuid4
 from django.utils import timezone
 from django.db import models
 from import_export.admin import ImportExportActionModelAdmin
+from import_export import resources
+from core.helpers import get_superuser
 
 class AuditableModel(models.Model):
     uuid = models.UUIDField(unique=True, default=uuid4, editable=False, null=False)
     active = models.BooleanField(default=True)
     version = models.IntegerField(default=1)
     
-    created_at = models.DateTimeField(editable=False, null=True, blank=True)
-    created_by = models.ForeignKey('auth.User', related_name='created_%(class)s_set', null=True, blank=True, editable=False, on_delete=models.SET_NULL)
-    updated_at = models.DateTimeField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=False, blank=False, editable=False)
+    created_by = models.ForeignKey('auth.User', related_name='created_%(class)s_set', null=False, blank=False, editable=False, on_delete=models.DO_NOTHING)
+    updated_at = models.DateTimeField(auto_now=False, null=True, blank=True)
     updated_by = models.ForeignKey('auth.User', related_name='updated_%(class)s_set', null=True, blank=True, on_delete=models.SET_NULL)
-    deleted_at = models.DateTimeField(null=True, blank=True)
+    deleted_at = models.DateTimeField(auto_now=False, null=True, blank=True)
     deleted_by = models.ForeignKey('auth.User', related_name='deleted_%(class)s_set', null=True, blank=True, on_delete=models.SET_NULL)
 
     class Meta:
@@ -21,7 +23,6 @@ class AuditableModel(models.Model):
     def __str__(self):
         return f"{'ACTIVE' if self.active else 'INACTIVE'}-v{self.version}-{self.uuid}"
     
-
 class AuditableAdmin(ImportExportActionModelAdmin):
     list_editable = ['active']
     list_filter = ['active']
@@ -33,13 +34,6 @@ class AuditableAdmin(ImportExportActionModelAdmin):
             return self.readonly_fields
         return self.readonly_fields + ['active']
 
-    def status(self, obj):
-        if obj.deleted_at and obj.deleted_by:
-            return f"Deleted at {obj.deleted_at.strftime('%Y-%m-%d %H:%M:%S')} by {obj.deleted_by}"
-        if obj.updated_at and obj.updated_by:
-            return f"Updated at {obj.updated_at.strftime('%Y-%m-%d %H:%M:%S')} by {obj.updated_by}"
-        return f"Created at {obj.created_at.strftime('%Y-%m-%d %H:%M:%S')} by {obj.created_by}"
-    
     def save_model(self, request, obj, form, change):
         if not change:  # Object is being created
             obj.created_at = timezone.now()
@@ -62,4 +56,13 @@ class AuditableAdmin(ImportExportActionModelAdmin):
     
     def activate(self, request, queryset):
         queryset.update(active=True)
-    
+        
+        
+class AuditableModelResource(resources.ModelResource):
+    class Meta:
+        model = AuditableModel
+        exclude = ('uuid', 'version', 'active', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at', 'deleted_by')
+        
+    def before_save_instance(self, instance, row, **kwargs):
+        superuser = get_superuser()
+        instance.created_by = superuser if superuser else None

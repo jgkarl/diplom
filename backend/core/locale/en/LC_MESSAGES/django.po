@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-06 22:13+0200\n"
+"POT-Creation-Date: 2025-03-22 16:08+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,22 +18,70 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: book/admin.py:7 book/admin.py:8
+#: backend/book/admin.py:7 backend/book/admin.py:8
 msgid "Diplomas"
 msgstr ""
 
-#: book/admin.py:9
+#: backend/book/admin.py:9
 msgid "Admin Panel"
 msgstr ""
 
-#: book/models/Book.py:17
+#: backend/book/models/Book.py:9
 msgid "Token"
 msgstr ""
 
-#: core/settings.py:149
-msgid "English"
+#: backend/book/models/Book.py:10
+msgid "Published"
 msgstr ""
 
-#: core/settings.py:150
-msgid "Estonian"
+#: backend/book/models/Book.py:11
+msgid "Pages"
+msgstr ""
+
+#: backend/book/models/Book.py:13
+msgid "Format"
+msgstr ""
+
+#: backend/book/models/Book.py:14
+msgid "Status"
+msgstr ""
+
+#: backend/book/models/Book.py:16
+msgid "Notes"
+msgstr ""
+
+#: backend/book/models/Book.py:20 backend/book/models/admin/BookAdmin.py:59
+msgid "Categories"
+msgstr ""
+
+#: backend/book/models/Book.py:21 backend/book/models/admin/BookAdmin.py:12
+msgid "Departments"
+msgstr ""
+
+#: backend/book/models/Book.py:22
+msgid "Languages"
+msgstr ""
+
+#: backend/book/models/Book.py:23 backend/book/models/admin/BookAdmin.py:64
+msgid "Authors"
+msgstr ""
+
+#: backend/book/models/Book.py:24 backend/book/models/admin/BookAdmin.py:69
+msgid "Supervisors"
+msgstr ""
+
+#: backend/book/models/admin/BookAdmin.py:20
+msgid "All"
+msgstr ""
+
+#: backend/book/models/admin/BookAdmin.py:47
+msgid "Book Title"
+msgstr ""
+
+#: backend/book/models/admin/BookAdmin.py:52
+msgid "Department"
+msgstr ""
+
+#: backend/theme/templates/admin/item_search_filter.html:33
+msgid "Filter"
 msgstr ""

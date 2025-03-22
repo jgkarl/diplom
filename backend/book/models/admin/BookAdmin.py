@@ -4,9 +4,12 @@ from core.models.abstract import AuditableAdmin
 from book.models import Book, BookNameInline, BookResumeInline, BookExtraInline, BookCategory, BookDepartment, BookLanguage, BookPerson
 from book.models.form.BookForm import BookForm
 from book.models.resources.BookResource import BookResource
+from django.db.models import F
+from django.utils.html import format_html
+from django.utils.translation import gettext_lazy as _
 
 class DepartmentFilterSearchForm(admin.SimpleListFilter):
-    title = 'Departments'
+    title = _('Departments')
     parameter_name = 'department'
     template = 'admin/item_search_filter.html'
 
@@ -14,7 +17,7 @@ class DepartmentFilterSearchForm(admin.SimpleListFilter):
         # Get a list of items for the dropdown
         departments = [(str(department.code), department.name) for department in Item.objects.filter(type__identifier='book_department')]
         # Add an option for "All" at the beginning
-        departments.insert(0, ('', 'All'))
+        departments.insert(0, ('', _('All')))
         return departments
 
     def queryset(self, request, queryset):
@@ -31,61 +34,41 @@ class DepartmentFilterSearchForm(admin.SimpleListFilter):
 @admin.register(Book)
 class BookAdmin(AuditableAdmin):
     list_editable = ['active']
-    list_filter = ['active', DepartmentFilterSearchForm]
-    list_display = ['token', 'published', 'book_name','active', 'book_department']
+    list_filter = ['active', DepartmentFilterSearchForm, 'updated_at']
+    list_display = ['token', 'published','book_author', 'book_name', 'book_categories', 'book_supervisor', 'book_department', 'status', 'updated_at', 'active']
+
     list_display_links = ['book_name']
-    search_fields = ['token', 'published', 'book_names__name']
-    
+    search_fields = ['token', 'published', 'book_names__name', 'book_persons__person__first_name', 'book_persons__person__last_name']
+    ordering = [F("updated_at").desc(nulls_last=True)]
+
     def book_name(self, obj):
         return obj.get_label()
     
+    book_name.short_description = _("Book Title")
+    
     def book_department(self, obj):
         return obj.get_department()
-        
-        
+    
+    book_department.short_description = _("Department")
+    
+    def book_categories(self, obj):
+        categories = obj.book_categories.all()
+        return format_html(", ".join([f"<span style='background-color: #e0e0e0; border-radius: 5px; padding: 2px 5px;'>{category.type.name}</span>" for category in categories]))
+    
+    book_categories.enable_tags = True
+    book_categories.short_description = _("Categories")
+    
+    def book_author(self, obj):
+        return ", ".join(obj.authors())
+    
+    book_author.short_description = _("Authors")
+    
+    def book_supervisor(self, obj):
+        return ", ".join(obj.supervisors())
+    
+    book_supervisor.short_description = _("Supervisors")
+    
     form = BookForm
     autocomplete_fields = ["format", "status"]
     inlines = [BookNameInline, BookResumeInline, BookExtraInline]
-
-    resource_class = BookResource   
-    
-    def save_model(self, request, obj, form, change):
-        try:
-            format = form.cleaned_data.get('format')
-            if format:
-                obj.format = format
-            obj.save()
-
-            categories = form.cleaned_data.get('categories')
-            if categories:
-                BookCategory.objects.bulk_create([
-                    BookCategory(type=category, book=obj) for category in categories
-                ])
-
-            departments = form.cleaned_data.get('departments')
-            if departments:
-                BookDepartment.objects.bulk_create([
-                    BookDepartment(type=department, book=obj) for department in departments
-                ])
-
-            languages = form.cleaned_data.get('languages')
-            if languages:
-                BookLanguage.objects.bulk_create([
-                    BookLanguage(type=language, book=obj) for language in languages
-                ])
-
-            authors = form.cleaned_data.get('authors')
-            if authors:
-                BookPerson.objects.bulk_create([
-                    BookPerson.create_author(book=obj, person=author) for author in authors
-                ])
-
-            supervisors = form.cleaned_data.get('supervisors')
-            if supervisors:
-                BookPerson.objects.bulk_create([
-                    BookPerson.create_supervisor(book=obj, person=supervisor) for supervisor in supervisors
-                ])
-
-            super().save_model(request, obj, form, change)
-        except Exception as e:
-            self.message_user(request, f"An error occurred: {e}", level='error')
+    resource_class = BookResource

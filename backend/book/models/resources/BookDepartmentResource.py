@@ -1,11 +1,10 @@
-from import_export import resources
+from core.models.abstract import AuditableModelResource
 from classifier.models import Item
 from book.models import Book, BookDepartment
 
-class BookDepartmentResource(resources.ModelResource):
+class BookDepartmentResource(AuditableModelResource):
     class Meta:
         model = BookDepartment
-        exclude = ('uuid', 'version', 'active', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at', 'deleted_by')
         
     def before_import_row(self, row, **kwargs):
         book_input = row.get('book_id')

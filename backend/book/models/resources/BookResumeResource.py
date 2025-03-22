@@ -1,11 +1,12 @@
-from import_export import resources
+from django.utils.timezone import now
+from core.models.abstract import AuditableModelResource
 from book.models import Book, BookResume
+from core.helpers import get_superuser
 from classifier.models import Item
 
-class BookResumeResource(resources.ModelResource):
+class BookResumeResource(AuditableModelResource):
     class Meta:
         model = BookResume
-        exclude = ('uuid', 'version', 'active', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at', 'deleted_by')
         
     def before_import_row(self, row, **kwargs):
         book_input = row.get('book_id')

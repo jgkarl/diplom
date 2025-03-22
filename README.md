@@ -50,6 +50,8 @@ psql postgres
 ```
 
 ```sql
+DROP database diplom with (force);
+
 CREATE ROLE diplom_admin WITH LOGIN CREATEDB CREATEROLE PASSWORD 'diplom_password';
 ALTER ROLE diplom_admin SET client_encoding TO 'utf8';
 ALTER ROLE diplom_admin SET default_transaction_isolation TO 'read committed';
@@ -92,19 +94,19 @@ python backend/manage.py createsuperuser --noinput
 
 #### import data
 ```shell
-python backend/manage.py import classifier.admin.ItemResource backend/classifier/data/classifier.json --encoding utf8 --format json
+python backend/manage.py import classifier.admin.ItemResource backend/classifier/data/classifier.json --encoding utf8 --format json --no-input
 
-python backend/manage.py import person.Person backend/person/data/person.json --encoding utf8 --format json
+python backend/manage.py import person.models.PersonResource backend/person/data/person.json --encoding utf8 --format json --no-input
 
-python backend/manage.py import book.Book backend/book/data/book.json --encoding utf8 --format json
+python backend/manage.py import book.models.resources.BookResource backend/book/data/book.json --encoding utf8 --format json --no-input
 
-python backend/manage.py import book.models.resources.BookNameResource backend/book/data/book_name.json --encoding utf8 --format json
-python backend/manage.py import book.models.resources.BookResumeResource backend/book/data/book_resumes.json --encoding utf8 --format json
-python backend/manage.py import book.models.resources.BookExtraResource backend/book/data/book_extras.json --encoding utf8 --format json
-python backend/manage.py import book.models.resources.BookLanguageResource backend/book/data/book_language.json --encoding utf8 --format json
-python backend/manage.py import book.models.resources.BookDepartmentResource backend/book/data/book_departments.json --encoding utf8 --format json
-python backend/manage.py import book.models.resources.BookCategoryResource backend/book/data/book_categories.json --encoding utf8 --format json
-python backend/manage.py import book.models.resources.BookPersonResource backend/book/data/book_person.json --encoding utf8 --format json
+python backend/manage.py import book.models.resources.BookNameResource backend/book/data/book_name.json --encoding utf8 --format json --no-input
+python backend/manage.py import book.models.resources.BookResumeResource backend/book/data/book_resumes.json --encoding utf8 --format json --no-input
+python backend/manage.py import book.models.resources.BookExtraResource backend/book/data/book_extras.json --encoding utf8 --format json --no-input
+python backend/manage.py import book.models.resources.BookLanguageResource backend/book/data/book_language.json --encoding utf8 --format json --no-input
+python backend/manage.py import book.models.resources.BookDepartmentResource backend/book/data/book_departments.json --encoding utf8 --format json --no-input
+python backend/manage.py import book.models.resources.BookCategoryResource backend/book/data/book_categories.json --encoding utf8 --format json --no-input
+python backend/manage.py import book.models.resources.BookPersonResource backend/book/data/book_person.json --encoding utf8 --format json --no-input
 ```
 
 python backend/manage.py import_marc21 
@@ -121,6 +123,9 @@ python backend/manage.py tailwind start
 
 ### run django server
 ```shell
+python backend/manage.py makemessages -l en
+python backend/manage.py makemessages -l et
+
 python backend/manage.py compilemessages
 python backend/manage.py collectstatic --no-input
 

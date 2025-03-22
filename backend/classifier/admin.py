@@ -3,10 +3,10 @@ from django.utils import timezone
 from django.utils.http import urlencode
 from django.utils.html import format_html
 from django.urls import reverse
-from import_export.admin import ImportExportActionModelAdmin
 from import_export import resources
 from core.helpers import snake_to_sentence, get_superuser
-from .models import Type, Item
+from classifier.models import Type, Item
+from core.models.abstract import AuditableAdmin, AuditableModelResource
 
 # Register your models here.
 
@@ -31,10 +31,10 @@ class TypeAdmin(admin.ModelAdmin):
 
     view_items_link.short_description = "Items"
 
-class ItemResource(resources.ModelResource):
+class ItemResource(AuditableModelResource):
     class Meta:
         model = Item
-        exclude = ('code', 'position', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at', 'deleted_by')
+        exclude = ('code', 'position')
 
     def before_import_row(self, row, **kwargs):
         type_input = row.get('type')
@@ -47,13 +47,9 @@ class ItemResource(resources.ModelResource):
             except Type.DoesNotExist:
                 type_instance = Type.objects.create(identifier=type_input, name=snake_to_sentence(type_input))
             row['type'] = type_instance.id
-    
-    def before_save_instance(self, instance, row, **kwargs):
-        superuser = get_superuser()
-        instance.created_by = superuser if superuser else None
 
 @admin.register(Item)
-class ItemAdmin(ImportExportActionModelAdmin):
+class ItemAdmin(AuditableAdmin):
     list_editable = ['active']
     list_filter = ['active', 'type']
     list_display = ['name', 'name_en', 'active', 'typename_link', 'code']
@@ -99,4 +95,4 @@ class ItemAdmin(ImportExportActionModelAdmin):
     def activate(self, request, queryset):
         queryset.update(active=True)
     
-    actions = ['activate','deactivate','delete_selected']
+    actions = ['activate', 'deactivate', 'delete_selected']

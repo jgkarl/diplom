@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django.db import models
-from import_export import resources
-from core.models.abstract import AuditableModel, AuditableAdmin
+from core.models.abstract import AuditableModel, AuditableAdmin, AuditableModelResource
 
 class Person(AuditableModel):
     first_name = models.CharField(max_length=255, null=True)
@@ -29,14 +28,11 @@ class Person(AuditableModel):
     def __str__(self):
         return self.fullname()
 
-class PersonResource(resources.ModelResource):
+class PersonResource(AuditableModelResource):
     class Meta:
         model = Person
         fields = ('id', 'first_name', 'last_name')
         export_order = ('first_name', 'last_name', 'birth', 'death', 'notes')
-        # skip_unchanged = True
-        # report_skipped = True
-        import_id_fields = ['id']
 
 @admin.register(Person)
 class PersonAdmin(AuditableAdmin):
