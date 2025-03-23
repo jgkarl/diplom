@@ -1,9 +1,11 @@
 from django.contrib import admin
 from django.utils.html import format_html
 from django.urls import reverse
+from django_select2.forms import ModelSelect2Mixin
 from core.models.abstract import AuditableAdmin
 from book.models import BookPerson
 from book.models.resources.BookPersonResource import BookPersonResource
+from django.utils.translation import gettext_lazy as _
 
 @admin.register(BookPerson)
 class BookPersonAdmin(AuditableAdmin):
@@ -23,3 +25,5 @@ class BookPersonAdmin(AuditableAdmin):
     def person_view(self, obj):
         url = reverse("admin:person_person_change", args=[obj.person.id])
         return format_html('<a href="{}">{}</a>', url, obj.person.fullname())
+    
+# todo: make persons select2 autocomplete field filterable by first_name and last_name

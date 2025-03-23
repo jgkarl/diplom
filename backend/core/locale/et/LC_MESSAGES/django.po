@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-22 16:08+0200\n"
+"POT-Creation-Date: 2025-03-23 19:20+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: backend/book/admin.py:7 backend/book/admin.py:8
 msgid "Diplomas"
-msgstr ""
+msgstr "Diplomitööd"
 
 #: backend/book/admin.py:9
 msgid "Admin Panel"
@@ -70,6 +70,22 @@ msgstr "Autorid"
 msgid "Supervisors"
 msgstr "Juhendajad"
 
+#: backend/book/models/BookName.py:14 backend/book/models/BookName.py:27
+msgid "Book Name"
+msgstr "Teose pealkiri"
+
+#: backend/book/models/BookName.py:15 backend/book/models/BookName.py:28
+msgid "Book Names"
+msgstr "Teose pealkirjad"
+
+#: backend/book/models/BookTag.py:26 backend/book/models/BookTag.py:41
+msgid "Book Tag"
+msgstr "Teose märksõna"
+
+#: backend/book/models/BookTag.py:27 backend/book/models/BookTag.py:42
+msgid "Book Tags"
+msgstr "Teose märksõnad"
+
 #: backend/book/models/admin/BookAdmin.py:20
 msgid "All"
 msgstr "Kõik"
@@ -82,6 +98,102 @@ msgstr "Teose pealkiri"
 msgid "Department"
 msgstr "Osakond"
 
+#: backend/ems/models.py:7
+msgid "Code"
+msgstr ""
+
+#: backend/ems/models.py:8
+msgid "Name"
+msgstr "Nimetus"
+
+#: backend/ems/models.py:11
+msgid "Category"
+msgstr "Valdkonnad"
+
+#: backend/ems/models.py:12
+msgid "Categorys"
+msgstr "Valdkonnad"
+
+#: backend/ems/models.py:20
+msgid "EMS ID"
+msgstr "EMS ID"
+
+#: backend/ems/models.py:21
+msgid "Chronological term"
+msgstr "Ajamärksõna"
+
+#: backend/ems/models.py:22 backend/ems/models.py:46
+msgid "Topical term"
+msgstr "Teemamärksõna"
+
+#: backend/ems/models.py:23 backend/ems/models.py:47
+msgid "Geographic term"
+msgstr "Kohamärksõna"
+
+#: backend/ems/models.py:24 backend/ems/models.py:48
+msgid "Form term"
+msgstr "Vormimärksõna"
+
+#: backend/ems/models.py:25
+msgid "Source data"
+msgstr "Allikas"
+
+#: backend/ems/models.py:26
+msgid "Description"
+msgstr "Seletus"
+
+#: backend/ems/models.py:29
+msgid "Keyword"
+msgstr "Märksõna"
+
+#: backend/ems/models.py:30
+msgid "Keywords"
+msgstr "Märksõnad"
+
+#: backend/ems/models.py:59
+msgid "Relation type"
+msgstr "Seose tüüp"
+
 #: backend/theme/templates/admin/item_search_filter.html:33
 msgid "Filter"
 msgstr "Filtreeri"
+
+#: backend/core/models/abstract.py:11
+msgid "Active"
+msgstr "Aktiivne"
+
+#: backend/core/models/abstract.py:12
+msgid "Version"
+msgstr "Versioon"
+
+#: backend/core/models/abstract.py:14
+msgid "Created"
+msgstr "Loodud"
+
+#: backend/core/models/abstract.py:15
+msgid "Created by"
+msgstr "Looja"
+
+#: backend/core/models/abstract.py:16
+msgid "Updated"
+msgstr "Muudetud"
+
+#: backend/core/models/abstract.py:17
+msgid "Updated by"
+msgstr "Muutja"
+
+#: backend/core/models/abstract.py:18
+msgid "Deleted"
+msgstr "Kustutatud"
+
+#: backend/core/models/abstract.py:19
+msgid "Deleted by"
+msgstr "Kustutaja"
+
+#: backend/core/models/abstract.py:61
+msgid "Activate items"
+msgstr "Aktiveeri üksused"
+
+#: backend/core/models/abstract.py:62
+msgid "Deactivate items"
+msgstr "Deaktiveeri üksused"

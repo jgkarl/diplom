@@ -107,6 +107,8 @@ python backend/manage.py import book.models.resources.BookLanguageResource backe
 python backend/manage.py import book.models.resources.BookDepartmentResource backend/book/data/book_departments.json --encoding utf8 --format json --no-input
 python backend/manage.py import book.models.resources.BookCategoryResource backend/book/data/book_categories.json --encoding utf8 --format json --no-input
 python backend/manage.py import book.models.resources.BookPersonResource backend/book/data/book_person.json --encoding utf8 --format json --no-input
+
+python backend/manage.py import_marc21 backend/ems/data/ems_marc_tais.mrc --batch_size 1000
 ```
 
 python backend/manage.py import_marc21 
@@ -117,7 +119,9 @@ python backend/manage.py import_marc21
 npm install 
 # starts `vite` server that delivers VueJS `frontend` application
 npm run dev
+npm run build
 # hot reload for django theme tailwindcss
+python backend/manage.py tailwind build
 python backend/manage.py tailwind start
 ```
 
@@ -127,6 +131,7 @@ python backend/manage.py makemessages -l en
 python backend/manage.py makemessages -l et
 
 python backend/manage.py compilemessages
+
 python backend/manage.py collectstatic --no-input
 
 python backend/manage.py runserver
@@ -137,3 +142,14 @@ python backend/manage.py runserver
 * [django-admin - localhost:8000/admin](http://127.0.0.1:8000/admin)
 * [django book - localhost:8000/book/list](http://127.0.0.1:8000/book/list)
 * [vue-vite book - localhost:8000/book](http://127.0.0.1:8000/book)
+
+
+* clean up migrations
+`find . -type d -name "migration*" -not -path "./.venv/*" -exec find {} -type f -name "*.py" ! -name "__init__.py" -delete \;`
+
+TODO: add gis support
+TODO: create frontend search
+TODO: create frontend map
+TODO: add gis georeference summarizer
+TODO: add ocr input
+TODO: add ocr processor

@@ -5,7 +5,7 @@ from django.utils.html import format_html
 from book.models import BookCategory
 from book.models.resources.BookCategoryResource import BookCategoryResource
 
-@admin.register(BookCategory)
+# @admin.register(BookCategory)
 class BookCategoryAdmin(AuditableAdmin):
     list_display_links = ['type']
     list_display = ['type', 'book_view', 'active']

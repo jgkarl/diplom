@@ -1,6 +1,7 @@
 from django import forms
-from book.models import BookCategory, BookDepartment, BookLanguage
-from classifier.models import Item
+from tag.models import Tag
+from book.models import BookCategory, BookDepartment, BookLanguage, BookTag
+from classifier.models import Item, Type
 from django_select2.forms import Select2TagWidget
 from book.models.Book import Book
 from person.models import Person
@@ -17,59 +18,99 @@ class BookForm(forms.ModelForm):
         fields = "__all__"
         labels = Book.get_field_labels()
 
-    exclude = ["uuid","version","active","created_at","created_by","updated_at","updated_by","deleted_at","deleted_by"]
+    exclude = [
+        "uuid",
+        "version",
+        "active",
+        "created_at",
+        "created_by",
+        "updated_at",
+        "updated_by",
+        "deleted_at",
+        "deleted_by",
+    ]
     readonly_fields = ["status"]
 
+    active = forms.BooleanField(
+        label=Meta.labels["active"],
+        required=False,
+    )
+
     token = forms.CharField(
-        max_length=64, label=Meta.labels["token"], required=False
-        )
-    
+        widget=forms.TextInput(attrs={"style": "width: 100%;"}),
+        max_length=64,
+        label=Meta.labels["token"],
+        required=False,
+    )
+
     published = forms.CharField(
-        max_length=10, label=Meta.labels["published"], required=False
+        widget=forms.TextInput(attrs={"style": "width: 100%;"}),
+        max_length=10,
+        label=Meta.labels["published"],
+        required=False,
+    )
+
+    pages = forms.CharField(
+        widget=forms.TextInput(attrs={"style": "width: 100%;"}),
+        max_length=10,
+        label=Meta.labels["pages"],
+        required=False,
     )
 
     format = forms.ModelChoiceField(
+        widget=forms.Select(attrs={"style": "width: 100%;"}),
         queryset=Item.objects.filter(type__identifier="book_format"),
         required=False,
     )
-    
+
     status = forms.ModelChoiceField(
+        widget=forms.Select(attrs={"style": "width: 100%;"}),
         queryset=Item.objects.filter(type__identifier="book_status"),
         label=Meta.labels["status"],
         required=True,
     )
 
     notes = forms.CharField(
-        widget=forms.Textarea(attrs={"cols": 80, "rows": 3}),
+        widget=forms.Textarea(attrs={"style": "width: 100%;", "rows": 3}),
         label=Meta.labels["notes"],
+        required=False,
+    )
+
+    tags = forms.ModelMultipleChoiceField(
+        queryset=Tag.objects.none(),
+        widget=Select2TagWidget(attrs={"style": "width: 100%;", "data-tags": "false"}),
+        label=Meta.labels["tags"],
         required=False,
     )
 
     categories = forms.ModelMultipleChoiceField(
         queryset=Item.objects.none(),
-        widget=Select2TagWidget(attrs={"style": "width: 100%;"}),
+        widget=Select2TagWidget(attrs={"style": "width: 100%;", "data-tags": "false"}),
         label=Meta.labels["categories"],
         required=False,
     )
 
     departments = forms.ModelMultipleChoiceField(
         queryset=Item.objects.none(),
-        widget=Select2TagWidget(attrs={"style": "width: 100%;"}),
+        widget=Select2TagWidget(attrs={"style": "width: 100%;", "data-tags": "false"}),
         label=Meta.labels["departments"],
         required=False,
     )
+
     languages = forms.ModelMultipleChoiceField(
         queryset=Item.objects.none(),
         widget=Select2TagWidget(attrs={"style": "width: 100%;"}),
         label=Meta.labels["languages"],
         required=False,
     )
+
     authors = forms.ModelMultipleChoiceField(
         queryset=Person.objects.none(),
         widget=Select2TagWidget(attrs={"style": "width: 100%;"}),
         label=Meta.labels["authors"],
         required=False,
     )
+
     supervisors = forms.ModelMultipleChoiceField(
         queryset=Person.objects.none(),
         widget=Select2TagWidget(attrs={"style": "width: 100%;"}),
@@ -79,6 +120,8 @@ class BookForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(BookForm, self).__init__(*args, **kwargs)
+        self.fields["tags"].queryset = Tag.objects.all()
+        
         self.fields["categories"].queryset = Item.objects.filter(
             type__identifier="book_category"
         )
@@ -92,6 +135,7 @@ class BookForm(forms.ModelForm):
         self.fields["supervisors"].queryset = Person.objects.all()
 
         if self.instance and self.instance.pk:
+            self.fields["tags"].initial = self.instance.tag_items()
             self.fields["categories"].initial = self.instance.category_items()
             self.fields["departments"].initial = self.instance.department_items()
             self.fields["languages"].initial = self.instance.language_items()
@@ -103,6 +147,8 @@ class BookForm(forms.ModelForm):
             with transaction.atomic():
                 instance = super(BookForm, self).save(commit=False)
 
+                if "tags" in self.cleaned_data:
+                    self.save_tags(instance, self.cleaned_data["tags"])
                 if "categories" in self.cleaned_data:
                     self.save_categories(instance, self.cleaned_data["categories"])
                 if "departments" in self.cleaned_data:
@@ -120,6 +166,14 @@ class BookForm(forms.ModelForm):
         except Exception as e:
             transaction.rollback()
             raise e
+
+    def save_tags(self, instance, tags):
+        instance.book_tags.all().delete()
+        for tag in tags:
+            book_tag = BookTag.objects.create(
+                book=instance, tag=tag, created_by=get_superuser()
+            )
+            instance.book_tags.add(book_tag)
 
     def save_categories(self, instance, categories):
         instance.book_categories.all().delete()
@@ -140,6 +194,12 @@ class BookForm(forms.ModelForm):
     def save_languages(self, instance, languages):
         instance.book_languages.all().delete()
         for language in languages:
+            # if not isinstance(language, Item):
+            #     language, created = Item.objects.get_or_create(
+            #         name=language,
+            #         type=Type.objects.get(identifier="language"),
+            #         defaults={"created_by": get_superuser()},
+            #     )
             book_language = BookLanguage.objects.create(
                 book=instance, type=language, created_by=get_superuser()
             )

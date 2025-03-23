@@ -216,4 +216,5 @@ venv/
 .idea/
 
 !**/*/.gitkeep
+!**/*/.example
 **/*/package-lock.json

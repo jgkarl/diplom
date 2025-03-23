@@ -4,18 +4,19 @@ from django.db import models
 from import_export.admin import ImportExportActionModelAdmin
 from import_export import resources
 from core.helpers import get_superuser
+from django.utils.translation import gettext_lazy as _
 
 class AuditableModel(models.Model):
     uuid = models.UUIDField(unique=True, default=uuid4, editable=False, null=False)
-    active = models.BooleanField(default=True)
-    version = models.IntegerField(default=1)
+    active = models.BooleanField(default=True, verbose_name=_('Active'))
+    version = models.IntegerField(default=1, verbose_name=_('Version'))
     
-    created_at = models.DateTimeField(auto_now_add=True, null=False, blank=False, editable=False)
-    created_by = models.ForeignKey('auth.User', related_name='created_%(class)s_set', null=False, blank=False, editable=False, on_delete=models.DO_NOTHING)
-    updated_at = models.DateTimeField(auto_now=False, null=True, blank=True)
-    updated_by = models.ForeignKey('auth.User', related_name='updated_%(class)s_set', null=True, blank=True, on_delete=models.SET_NULL)
-    deleted_at = models.DateTimeField(auto_now=False, null=True, blank=True)
-    deleted_by = models.ForeignKey('auth.User', related_name='deleted_%(class)s_set', null=True, blank=True, on_delete=models.SET_NULL)
+    created_at = models.DateTimeField(auto_now_add=True, null=False, blank=False, editable=False, verbose_name=_('Created'))
+    created_by = models.ForeignKey('auth.User', related_name='created_%(class)s_set', null=False, blank=False, editable=False, on_delete=models.DO_NOTHING, verbose_name=_('Created by'))
+    updated_at = models.DateTimeField(auto_now=False, null=True, blank=True, verbose_name=_('Updated'))
+    updated_by = models.ForeignKey('auth.User', related_name='updated_%(class)s_set', null=True, blank=True, on_delete=models.SET_NULL, verbose_name=_('Updated by'))
+    deleted_at = models.DateTimeField(auto_now=False, null=True, blank=True, verbose_name=_('Deleted'))
+    deleted_by = models.ForeignKey('auth.User', related_name='deleted_%(class)s_set', null=True, blank=True, on_delete=models.SET_NULL, verbose_name=_('Deleted by'))
 
     class Meta:
         abstract = True
@@ -57,6 +58,8 @@ class AuditableAdmin(ImportExportActionModelAdmin):
     def activate(self, request, queryset):
         queryset.update(active=True)
         
+    activate.short_description = _("Activate items")
+    deactivate.short_description = _("Deactivate items")
         
 class AuditableModelResource(resources.ModelResource):
     class Meta:
@@ -66,3 +69,5 @@ class AuditableModelResource(resources.ModelResource):
     def before_save_instance(self, instance, row, **kwargs):
         superuser = get_superuser()
         instance.created_by = superuser if superuser else None
+        instance.updated_by = superuser if superuser else None
+        instance.updated_at = timezone.now()

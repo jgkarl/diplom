@@ -1,5 +1,5 @@
 from django.urls import path
-from api.views import BookListAPIView, BookCountAPIView
+from api.views import BookListAPIView, BookCountAPIView, PersonListAPIView, PersonSearchAPIView
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from rest_framework import permissions
@@ -26,4 +26,6 @@ urlpatterns = [
 urlpatterns += [
     path('v1/book', BookListAPIView.as_view(), name='book-api'),
     path('v1/book/count', BookCountAPIView.as_view(), name='book-count-api'),
+    path('v1/person', PersonListAPIView.as_view(), name='person-api'),
+    path('v1/person/search', PersonSearchAPIView.as_view(), name='person-search-api'),
 ]

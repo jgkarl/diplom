@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     "theme",
     "api",
     "tag",
+    "ems",
 ]
 
 MIDDLEWARE = [

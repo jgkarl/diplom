@@ -1,7 +1,7 @@
 import os
 from django.core.management.base import BaseCommand
 from pymarc import MARCReader
-from tag.models import EmsKeyword, EmsCategory, EmsKeywordCategory
+from ems.models import Keyword, Category, KeywordCategory
 from django.db.models import Q
 
 class Command(BaseCommand):
@@ -26,7 +26,7 @@ class Command(BaseCommand):
                 else:
                     self.stdout.write(self.style.SUCCESS(f'"{i}": "{record["001"].value()}"'))
 
-                keyword, created = EmsKeyword.objects.get_or_create(field_001=record['001'].value())
+                keyword, created = Keyword.objects.get_or_create(field_001=record['001'].value())
                 if not created:
                     self.stdout.write(self.style.WARNING(f'   INFO: Keyword with field_001 "{record["001"].value()}" already exists. Updating the existing record.'))
                 
@@ -44,8 +44,8 @@ class Command(BaseCommand):
                 if '072' in record:
                     for field in record.get_fields('072'):
                         category_code = field['a']
-                        category, created = EmsCategory.objects.get_or_create(code=category_code)
-                        EmsKeywordCategory.objects.get_or_create(keyword=keyword, category=category)
+                        category, created = Category.objects.get_or_create(code=category_code)
+                        KeywordCategory.objects.get_or_create(keyword=keyword, category=category)
                 
                 if '450' in record:
                     for field in record.get_fields('450'):
@@ -68,7 +68,7 @@ class Command(BaseCommand):
                         if '0' in field:
                             uri = field['0']
                             related_keyword_id = uri.split('/')[-1]
-                            related_keyword, created = EmsKeyword.objects.get_or_create(field_001=related_keyword_id)
+                            related_keyword, created = Keyword.objects.get_or_create(field_001=related_keyword_id)
                             if created:
                                 self.stdout.write(self.style.SUCCESS(f'SUCCESS: Created related keyword with field_001 "{related_keyword_id}"'))
                             relation, created = keyword.relations.get_or_create(related_keyword=related_keyword, relation_type=relation_type, via_field='550')
@@ -82,7 +82,7 @@ class Command(BaseCommand):
                         if '0' in field:
                             uri = field['0']
                             related_keyword_id = uri.split('/')[-1]
-                            related_keyword, created = EmsKeyword.objects.get_or_create(field_001=related_keyword_id)
+                            related_keyword, created = Keyword.objects.get_or_create(field_001=related_keyword_id)
                             if created:
                                 self.stdout.write(self.style.SUCCESS(f'SUCCESS: Created related keyword with field_001 "{related_keyword_id}"'))
                             relation, created = keyword.relations.get_or_create(related_keyword=related_keyword, relation_type=relation_type, via_field='551')
@@ -96,7 +96,7 @@ class Command(BaseCommand):
                         if '0' in field:
                             uri = field['0']
                             related_keyword_id = uri.split('/')[-1]
-                            related_keyword, created = EmsKeyword.objects.get_or_create(field_001=related_keyword_id)
+                            related_keyword, created = Keyword.objects.get_or_create(field_001=related_keyword_id)
                             if created:
                                 self.stdout.write(self.style.SUCCESS(f'SUCCESS: Created related keyword with field_001 "{related_keyword_id}"'))
                             relation, created = keyword.relations.get_or_create(related_keyword=related_keyword, relation_type=relation_type, via_field='555')
@@ -112,7 +112,7 @@ class Command(BaseCommand):
         
         # import is done, now give data about operation
         
-        keywords_with_only_field_001 = EmsKeyword.objects.filter(
+        keywords_with_only_field_001 = Keyword.objects.filter(
             Q(field_001__isnull=False) &
             Q(field_148__isnull=True) &
             Q(field_150__isnull=True) &

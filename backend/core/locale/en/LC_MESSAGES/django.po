@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-22 16:08+0200\n"
+"POT-Creation-Date: 2025-03-23 19:20+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,6 +70,22 @@ msgstr ""
 msgid "Supervisors"
 msgstr ""
 
+#: backend/book/models/BookName.py:14 backend/book/models/BookName.py:27
+msgid "Book Name"
+msgstr ""
+
+#: backend/book/models/BookName.py:15 backend/book/models/BookName.py:28
+msgid "Book Names"
+msgstr ""
+
+#: backend/book/models/BookTag.py:26 backend/book/models/BookTag.py:41
+msgid "Book Tag"
+msgstr ""
+
+#: backend/book/models/BookTag.py:27 backend/book/models/BookTag.py:42
+msgid "Book Tags"
+msgstr ""
+
 #: backend/book/models/admin/BookAdmin.py:20
 msgid "All"
 msgstr ""
@@ -82,6 +98,102 @@ msgstr ""
 msgid "Department"
 msgstr ""
 
+#: backend/ems/models.py:7
+msgid "Code"
+msgstr ""
+
+#: backend/ems/models.py:8
+msgid "Name"
+msgstr ""
+
+#: backend/ems/models.py:11
+msgid "Category"
+msgstr ""
+
+#: backend/ems/models.py:12
+msgid "Categorys"
+msgstr ""
+
+#: backend/ems/models.py:20
+msgid "EMS ID"
+msgstr ""
+
+#: backend/ems/models.py:21
+msgid "Chronological term"
+msgstr ""
+
+#: backend/ems/models.py:22 backend/ems/models.py:46
+msgid "Topical term"
+msgstr ""
+
+#: backend/ems/models.py:23 backend/ems/models.py:47
+msgid "Geographic name"
+msgstr ""
+
+#: backend/ems/models.py:24 backend/ems/models.py:48
+msgid "Form term"
+msgstr ""
+
+#: backend/ems/models.py:25
+msgid "Source data found"
+msgstr ""
+
+#: backend/ems/models.py:26
+msgid "Description"
+msgstr ""
+
+#: backend/ems/models.py:29
+msgid "Keyword"
+msgstr ""
+
+#: backend/ems/models.py:30
+msgid "Keywords"
+msgstr ""
+
+#: backend/ems/models.py:59
+msgid "Relation type"
+msgstr ""
+
 #: backend/theme/templates/admin/item_search_filter.html:33
 msgid "Filter"
+msgstr ""
+
+#: backend/core/models/abstract.py:11
+msgid "Active"
+msgstr ""
+
+#: backend/core/models/abstract.py:12
+msgid "Version"
+msgstr ""
+
+#: backend/core/models/abstract.py:14
+msgid "Created"
+msgstr ""
+
+#: backend/core/models/abstract.py:15
+msgid "Created by"
+msgstr ""
+
+#: backend/core/models/abstract.py:16
+msgid "Updated"
+msgstr ""
+
+#: backend/core/models/abstract.py:17
+msgid "Updated by"
+msgstr ""
+
+#: backend/core/models/abstract.py:18
+msgid "Deleted"
+msgstr ""
+
+#: backend/core/models/abstract.py:19
+msgid "Deleted by"
+msgstr ""
+
+#: backend/core/models/abstract.py:61
+msgid "Activate items"
+msgstr ""
+
+#: backend/core/models/abstract.py:62
+msgid "Deactivate items"
 msgstr ""

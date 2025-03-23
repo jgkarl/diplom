@@ -17,6 +17,7 @@ class Book(AuditableModel):
 
     def get_field_labels():
         labels = {
+            'tags': _('Tags'),
             'categories': _('Categories'),
             'departments': _('Departments'),
             'languages': _('Languages'),
@@ -25,8 +26,10 @@ class Book(AuditableModel):
         }
         
         labels.update({field.name: field.verbose_name for field in Book._meta.fields})
-        logger.debug(f"Labels: {labels}")
         return labels
+
+    def tag_items(self):
+        return list(self.book_tags.values_list('tag_id', flat=True))
 
     def category_items(self):
         return list(self.book_categories.values_list('type_id', flat=True))

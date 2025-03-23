@@ -5,7 +5,7 @@ from django.utils.html import format_html
 from book.models import BookLanguage
 from book.models.resources.BookLanguageResource import BookLanguageResource
 
-@admin.register(BookLanguage)
+# @admin.register(BookLanguage)
 class BookLanguageAdmin(AuditableAdmin):
     list_display = ['type', 'book_view', 'active']
     resource_class = BookLanguageResource
