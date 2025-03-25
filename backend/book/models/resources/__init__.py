@@ -6,3 +6,4 @@ from book.models.resources.BookExtraResource import BookExtraResource
 from book.models.resources.BookLanguageResource import BookLanguageResource
 from book.models.resources.BookCategoryResource import BookCategoryResource
 from book.models.resources.BookDepartmentResource import BookDepartmentResource
+from book.models.resources.BookTagResource import BookTagResource

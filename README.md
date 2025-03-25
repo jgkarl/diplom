@@ -108,7 +108,12 @@ python backend/manage.py import book.models.resources.BookDepartmentResource bac
 python backend/manage.py import book.models.resources.BookCategoryResource backend/book/data/book_categories.json --encoding utf8 --format json --no-input
 python backend/manage.py import book.models.resources.BookPersonResource backend/book/data/book_person.json --encoding utf8 --format json --no-input
 
-python backend/manage.py import_marc21 backend/ems/data/ems_marc_tais.mrc --batch_size 1000
+python backend/manage.py import_marc21 backend/ems/data/ems_marc_tais.mrc --batch_size 1000000
+
+python backend/manage.py transform_tags 
+
+python backend/manage.py import book.models.resources.BookTagResource backend/book/data/book_tag_topic.json --encoding utf8 --format json --no-input
+
 ```
 
 python backend/manage.py import_marc21 
@@ -147,6 +152,7 @@ python backend/manage.py runserver
 * clean up migrations
 `find . -type d -name "migration*" -not -path "./.venv/*" -exec find {} -type f -name "*.py" ! -name "__init__.py" -delete \;`
 
+TODO: import booktags from excel
 TODO: add gis support
 TODO: create frontend search
 TODO: create frontend map
