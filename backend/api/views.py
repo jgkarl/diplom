@@ -1,6 +1,6 @@
 from rest_framework import generics
 from api.models import Book
-from api.serializers import BookSerializer, PersonSerializer
+from api.serializers import BookSerializer, PersonSerializer, Select2Serializer
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from person.models import Person
@@ -28,5 +28,14 @@ class PersonSearchAPIView(APIView):
         if query:
             persons = Person.objects.filter(first_name__icontains=query) | Person.objects.filter(last_name__icontains=query)
             serializer = PersonSerializer(persons, many=True)
+            return Response(serializer.data)
+        return Response({"error": "No query provided"}, status=400)
+
+class Select2QueryAPIView(APIView):
+    def get(self, request, *args, **kwargs):
+        query = request.query_params.get("q", "")
+        if query:
+            persons = Person.objects.filter(first_name__icontains=query) | Person.objects.filter(last_name__icontains=query)
+            serializer = Select2Serializer(persons, many=True)
             return Response(serializer.data)
         return Response({"error": "No query provided"}, status=400)

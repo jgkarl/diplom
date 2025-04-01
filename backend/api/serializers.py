@@ -12,3 +12,8 @@ class PersonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
         fields = ('uuid', 'first_name', 'last_name')
+
+class Select2Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Person
+        fields = ('id', 'fullname')

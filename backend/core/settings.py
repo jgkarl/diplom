@@ -108,6 +108,7 @@ STATIC_ROOT = "static"
 # Additional locations of static files
 STATICFILES_DIRS = [
     BASE_DIR / "theme/static",
+    BASE_DIR / "book/web",
     "frontend/dist",
 ]
 

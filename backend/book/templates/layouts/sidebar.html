@@ -1,0 +1,14 @@
+<!-- Sidebar -->
+<aside id="sidebar" class="bg-gray-100 w-1/3 border-r">
+    <div class="flex flex-col items-center py-6 px-3 h-full">
+        <h2 class="text-xl font-bold mb-4">Sidebar</h2>
+        <div id="sidebar-content" class="p-2 w-full">
+            <div id="searchbar-wrapper">
+                {% include searchbar_template %}
+            </div>
+            <div class="flex py-4 w-full justify-center">
+                {{ sidebar_content|safe }}
+            </div>
+        </div> 
+    </div>
+</aside>

@@ -2,13 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-23 19:20+0200\n"
+"POT-Creation-Date: 2025-04-01 16:48+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,23 +50,30 @@ msgstr "Olek"
 msgid "Notes"
 msgstr "Märkmed"
 
-#: backend/book/models/Book.py:20 backend/book/models/admin/BookAdmin.py:59
+#: backend/book/models/Book.py:20
+#, fuzzy
+#| msgid "Book Tags"
+msgid "Tags"
+msgstr "Teose märksõnad"
+
+#: backend/book/models/Book.py:21 backend/book/models/admin/BookAdmin.py:44
 msgid "Categories"
 msgstr "Valdkonnad"
 
-#: backend/book/models/Book.py:21 backend/book/models/admin/BookAdmin.py:12
+#: backend/book/models/Book.py:22
+#: backend/book/models/admin/BookDepartmentAdmin.py:10
 msgid "Departments"
 msgstr "Osakonnad"
 
-#: backend/book/models/Book.py:22
+#: backend/book/models/Book.py:23
 msgid "Languages"
 msgstr "Keeled"
 
-#: backend/book/models/Book.py:23 backend/book/models/admin/BookAdmin.py:64
+#: backend/book/models/Book.py:24 backend/book/models/admin/BookAdmin.py:49
 msgid "Authors"
 msgstr "Autorid"
 
-#: backend/book/models/Book.py:24 backend/book/models/admin/BookAdmin.py:69
+#: backend/book/models/Book.py:25 backend/book/models/admin/BookAdmin.py:54
 msgid "Supervisors"
 msgstr "Juhendajad"
 
@@ -78,25 +85,21 @@ msgstr "Teose pealkiri"
 msgid "Book Names"
 msgstr "Teose pealkirjad"
 
-#: backend/book/models/BookTag.py:26 backend/book/models/BookTag.py:41
-msgid "Book Tag"
-msgstr "Teose märksõna"
-
-#: backend/book/models/BookTag.py:27 backend/book/models/BookTag.py:42
-msgid "Book Tags"
-msgstr "Teose märksõnad"
-
-#: backend/book/models/admin/BookAdmin.py:20
-msgid "All"
-msgstr "Kõik"
-
-#: backend/book/models/admin/BookAdmin.py:47
+#: backend/book/models/admin/BookAdmin.py:25
 msgid "Book Title"
 msgstr "Teose pealkiri"
 
-#: backend/book/models/admin/BookAdmin.py:52
+#: backend/book/models/admin/BookAdmin.py:30
 msgid "Department"
 msgstr "Osakond"
+
+#: backend/book/models/admin/BookAdmin.py:37
+msgid "Book Tags"
+msgstr "Teose märksõnad"
+
+#: backend/book/models/admin/BookDepartmentAdmin.py:18
+msgid "All"
+msgstr "Kõik"
 
 #: backend/ems/models.py:7
 msgid "Code"
@@ -126,7 +129,7 @@ msgstr "Ajamärksõna"
 msgid "Topical term"
 msgstr "Teemamärksõna"
 
-#: backend/ems/models.py:23 backend/ems/models.py:47
+#: backend/ems/models.py:23
 msgid "Geographic term"
 msgstr "Kohamärksõna"
 
@@ -150,11 +153,17 @@ msgstr "Märksõna"
 msgid "Keywords"
 msgstr "Märksõnad"
 
+#: backend/ems/models.py:47
+#, fuzzy
+#| msgid "Geographic term"
+msgid "Geographic name"
+msgstr "Kohamärksõna"
+
 #: backend/ems/models.py:59
 msgid "Relation type"
 msgstr "Seose tüüp"
 
-#: backend/theme/templates/admin/item_search_filter.html:33
+#: backend/theme/templates/admin/department_search_filter.html:33
 msgid "Filter"
 msgstr "Filtreeri"
 
@@ -197,3 +206,6 @@ msgstr "Aktiveeri üksused"
 #: backend/core/models/abstract.py:62
 msgid "Deactivate items"
 msgstr "Deaktiveeri üksused"
+
+#~ msgid "Book Tag"
+#~ msgstr "Teose märksõna"
