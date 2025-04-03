@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "import_export",
     "django_select2",
     "tailwind",
+    "django_neomodel",
     "django_browser_reload",
     "rest_framework",
     "drf_yasg",
@@ -63,6 +64,7 @@ INSTALLED_APPS = [
     "api",
     "tag",
     "ems",
+    "neom",
 ]
 
 MIDDLEWARE = [
@@ -200,3 +202,12 @@ LOGGING = {
         'level': 'DEBUG',
     },
 }
+
+
+NEOMODEL_NEO4J_BOLT_URL = os.environ.get('NEO4J_BOLT_URL','bolt://neo4j:neo4j@localhost:7687')
+
+# optional neo configurations
+NEOMODEL_SIGNALS = True
+NEOMODEL_FORCE_TIMEZONE = False
+NEOMODEL_ENCRYPTED_CONNECTION = True
+NEOMODEL_MAX_POOL_SIZE = 50

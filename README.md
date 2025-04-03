@@ -152,7 +152,6 @@ python backend/manage.py runserver
 * clean up migrations
 `find . -type d -name "migration*" -not -path "./.venv/*" -exec find {} -type f -name "*.py" ! -name "__init__.py" -delete \;`
 
-TODO: import booktags from excel
 TODO: add gis support
 TODO: create frontend search
 TODO: create frontend map
