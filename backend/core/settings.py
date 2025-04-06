@@ -21,7 +21,7 @@ from django.utils.translation import gettext_lazy as _
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # Extensions
+    "corsheaders",
     "debug_toolbar",
     "import_export",
     "django_select2",
@@ -72,6 +73,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -88,7 +90,7 @@ WSGI_APPLICATION = "core.wsgi.application"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "theme/templates"],
+        "DIRS": ["theme/templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -109,9 +111,8 @@ STATIC_ROOT = "static"
 
 # Additional locations of static files
 STATICFILES_DIRS = [
-    BASE_DIR / "theme/static",
-    BASE_DIR / "book/web",
-    "frontend/dist",
+    "theme/static/",
+    "book/web/", # currently select2 config
 ]
 
 # Default primary key field type
@@ -125,11 +126,11 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("POSTGRES_NAME"),
+        "NAME": os.getenv("POSTGRES_DB"),
         "USER": os.getenv("POSTGRES_USER"),
         "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
-        "HOST": os.getenv("POSTGRES_HOST"),  # Set to empty string for localhost.
-        "PORT": os.getenv("POSTGRES_PORT"),  # Set to empty string for default.
+        "HOST": os.getenv("POSTGRES_HOST", ""),  # Set to empty string for localhost.
+        "PORT": os.getenv("POSTGRES_PORT", ""),  # Set to empty string for default.
     },
 }
 
@@ -163,7 +164,7 @@ LANGUAGES = [
     ("et", "Eesti"),
 ]
 
-LOCALE_PATHS = [BASE_DIR / "core/locale"]
+LOCALE_PATHS = ["core/locale"]
 
 TIME_ZONE = "Europe/Tallinn"
 USE_TZ = True
@@ -184,7 +185,7 @@ TAILWIND_CSS_PATH = "assets/styles.css"
 DJANGO_VITE = {
     "default": {
         "dev_mode": DEBUG,
-        "manifest_path": os.path.join(BASE_DIR, "frontend", "dist", "manifest.json"),
+        "manifest_path": os.path.join(BASE_DIR, "client/assets/dist", "manifest.json"),
     },
 }
 
@@ -211,3 +212,9 @@ NEOMODEL_SIGNALS = True
 NEOMODEL_FORCE_TIMEZONE = False
 NEOMODEL_ENCRYPTED_CONNECTION = True
 NEOMODEL_MAX_POOL_SIZE = 50
+
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:5173",
+# ]
+
+# CORS_ALLOW_ALL_ORIGINS = DEBUG

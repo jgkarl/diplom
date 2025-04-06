@@ -8,18 +8,18 @@ export default defineConfig({
   plugins: [vue(), tailwindcss()],
   build: {
     manifest: "manifest.json",
-    outDir: resolve("./frontend/dist"),
+    outDir: resolve("./static/dist"),
     rollupOptions: {
       input: {
-        main: resolve("./frontend/src/main.js"),
+        main: resolve("./src/main.js"),
       },
     },
     assetsInlineLimit: 0, // Ensure all assets are copied to the output directory
   },
-  assetsInclude: ["./frontend/src/assets"],
+  assetsInclude: ["./src/assets"],
   resolve: {
     alias: {
-      '@': resolve(__dirname, './frontend/src'),
+      '@': resolve(__dirname, './src'),
     },
   },
 });

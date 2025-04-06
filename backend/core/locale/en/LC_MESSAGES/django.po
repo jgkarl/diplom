@@ -2,13 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-01 16:48+0300\n"
+"POT-Creation-Date: 2025-04-06 17:03+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,187 +18,186 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: backend/book/admin.py:7 backend/book/admin.py:8
+#: book/admin.py:7 book/admin.py:8
 msgid "Diplomas"
 msgstr ""
 
-#: backend/book/admin.py:9
+#: book/admin.py:9
 msgid "Admin Panel"
 msgstr ""
 
-#: backend/book/models/Book.py:9
+#: book/models/Book.py:9
 msgid "Token"
 msgstr ""
 
-#: backend/book/models/Book.py:10
+#: book/models/Book.py:10
 msgid "Published"
 msgstr ""
 
-#: backend/book/models/Book.py:11
+#: book/models/Book.py:11
 msgid "Pages"
 msgstr ""
 
-#: backend/book/models/Book.py:13
+#: book/models/Book.py:13
 msgid "Format"
 msgstr ""
 
-#: backend/book/models/Book.py:14
+#: book/models/Book.py:14
 msgid "Status"
 msgstr ""
 
-#: backend/book/models/Book.py:16
+#: book/models/Book.py:16
 msgid "Notes"
 msgstr ""
 
-#: backend/book/models/Book.py:20
+#: book/models/Book.py:20
 msgid "Tags"
 msgstr ""
 
-#: backend/book/models/Book.py:21 backend/book/models/admin/BookAdmin.py:44
+#: book/models/Book.py:21 book/models/admin/BookAdmin.py:44
 msgid "Categories"
 msgstr ""
 
-#: backend/book/models/Book.py:22
-#: backend/book/models/admin/BookDepartmentAdmin.py:10
+#: book/models/Book.py:22 book/models/admin/BookDepartmentAdmin.py:10
 msgid "Departments"
 msgstr ""
 
-#: backend/book/models/Book.py:23
+#: book/models/Book.py:23
 msgid "Languages"
 msgstr ""
 
-#: backend/book/models/Book.py:24 backend/book/models/admin/BookAdmin.py:49
+#: book/models/Book.py:24 book/models/admin/BookAdmin.py:49
 msgid "Authors"
 msgstr ""
 
-#: backend/book/models/Book.py:25 backend/book/models/admin/BookAdmin.py:54
+#: book/models/Book.py:25 book/models/admin/BookAdmin.py:54
 msgid "Supervisors"
 msgstr ""
 
-#: backend/book/models/BookName.py:14 backend/book/models/BookName.py:27
+#: book/models/BookName.py:14 book/models/BookName.py:27
 msgid "Book Name"
 msgstr ""
 
-#: backend/book/models/BookName.py:15 backend/book/models/BookName.py:28
+#: book/models/BookName.py:15 book/models/BookName.py:28
 msgid "Book Names"
 msgstr ""
 
-#: backend/book/models/admin/BookAdmin.py:25
+#: book/models/admin/BookAdmin.py:25
 msgid "Book Title"
 msgstr ""
 
-#: backend/book/models/admin/BookAdmin.py:30
+#: book/models/admin/BookAdmin.py:30
 msgid "Department"
 msgstr ""
 
-#: backend/book/models/admin/BookAdmin.py:37
+#: book/models/admin/BookAdmin.py:37
 msgid "Book Tags"
 msgstr ""
 
-#: backend/book/models/admin/BookDepartmentAdmin.py:18
+#: book/models/admin/BookDepartmentAdmin.py:18
 msgid "All"
 msgstr ""
 
-#: backend/ems/models.py:7
+#: ems/models.py:7
 msgid "Code"
 msgstr ""
 
-#: backend/ems/models.py:8
+#: ems/models.py:8
 msgid "Name"
 msgstr ""
 
-#: backend/ems/models.py:11
+#: ems/models.py:11
 msgid "Category"
 msgstr ""
 
-#: backend/ems/models.py:12
+#: ems/models.py:12
 msgid "Categorys"
 msgstr ""
 
-#: backend/ems/models.py:20
+#: ems/models.py:20
 msgid "EMS ID"
 msgstr ""
 
-#: backend/ems/models.py:21
+#: ems/models.py:21
 msgid "Chronological term"
 msgstr ""
 
-#: backend/ems/models.py:22 backend/ems/models.py:46
+#: ems/models.py:22 ems/models.py:46
 msgid "Topical term"
 msgstr ""
 
-#: backend/ems/models.py:23
+#: ems/models.py:23
 msgid "Geographic term"
 msgstr ""
 
-#: backend/ems/models.py:24 backend/ems/models.py:48
+#: ems/models.py:24 ems/models.py:48
 msgid "Form term"
 msgstr ""
 
-#: backend/ems/models.py:25
+#: ems/models.py:25
 msgid "Source data"
 msgstr ""
 
-#: backend/ems/models.py:26
+#: ems/models.py:26
 msgid "Description"
 msgstr ""
 
-#: backend/ems/models.py:29
+#: ems/models.py:29
 msgid "Keyword"
 msgstr ""
 
-#: backend/ems/models.py:30
+#: ems/models.py:30
 msgid "Keywords"
 msgstr ""
 
-#: backend/ems/models.py:47
+#: ems/models.py:47
 msgid "Geographic name"
 msgstr ""
 
-#: backend/ems/models.py:59
+#: ems/models.py:59
 msgid "Relation type"
 msgstr ""
 
-#: backend/theme/templates/admin/department_search_filter.html:33
+#: theme/templates/admin/department_search_filter.html:33
 msgid "Filter"
 msgstr ""
 
-#: backend/core/models/abstract.py:11
+#: core/models/abstract.py:11
 msgid "Active"
 msgstr ""
 
-#: backend/core/models/abstract.py:12
+#: core/models/abstract.py:12
 msgid "Version"
 msgstr ""
 
-#: backend/core/models/abstract.py:14
+#: core/models/abstract.py:14
 msgid "Created"
 msgstr ""
 
-#: backend/core/models/abstract.py:15
+#: core/models/abstract.py:15
 msgid "Created by"
 msgstr ""
 
-#: backend/core/models/abstract.py:16
+#: core/models/abstract.py:16
 msgid "Updated"
 msgstr ""
 
-#: backend/core/models/abstract.py:17
+#: core/models/abstract.py:17
 msgid "Updated by"
 msgstr ""
 
-#: backend/core/models/abstract.py:18
+#: core/models/abstract.py:18
 msgid "Deleted"
 msgstr ""
 
-#: backend/core/models/abstract.py:19
+#: core/models/abstract.py:19
 msgid "Deleted by"
 msgstr ""
 
-#: backend/core/models/abstract.py:61
+#: core/models/abstract.py:61
 msgid "Activate items"
 msgstr ""
 
-#: backend/core/models/abstract.py:62
+#: core/models/abstract.py:62
 msgid "Deactivate items"
 msgstr ""

@@ -11,7 +11,7 @@ class TagAdmin(admin.ModelAdmin):
     def external_id_link(self, obj):
         if obj.external_id:
             return format_html(
-                '<a href="https://www.ems.ee/{}" target="_blank">{}</a>',
+                '<a href="https://ems.elnet.ee/id/{}" target="_blank">{}</a>',
                 obj.external_id,
                 obj.external_id,
             )

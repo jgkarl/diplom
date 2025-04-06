@@ -4,12 +4,14 @@ function initializeSelect2(selector) {
         width: '100%', 
         placeholder: 'Search for books...', 
         allowClear: false, 
+        minimumInputLength: 1,
         minimumResultsForSearch: 1, 
         data: [],
         ajax: {
             url: '/api/v1/select2',
             dataType: 'json',
             delay: 250,
+            cache: true,
             data: function(params) {
                 return {
                     q: params.term 
@@ -17,18 +19,9 @@ function initializeSelect2(selector) {
             },
             processResults: function(data) {
                 return {
-                    results: data.map(function(item) {
-                        return {
-                            id: item.id,
-                            text: item.fullname
-                        };
-                    })
+                    results: data
                 };
             },
-            cache: true
-        },
-        templateResult: function (data) {
-            return data.text; // Format for displaying options
         },
     });
 }

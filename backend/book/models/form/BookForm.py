@@ -3,6 +3,7 @@ from tag.models import Tag
 from book.models import BookCategory, BookDepartment, BookLanguage, BookTag
 from classifier.models import Item, Type
 from django_select2.forms import Select2TagWidget
+from book.widgets.widgets import MySelect2TagWidget
 from book.models.Book import Book
 from person.models import Person
 from django.db import transaction
@@ -78,7 +79,7 @@ class BookForm(forms.ModelForm):
 
     tags = forms.ModelMultipleChoiceField(
         queryset=Tag.objects.none(),
-        widget=Select2TagWidget(attrs={"style": "width: 100%;", "data-tags": "false"}),
+        widget=MySelect2TagWidget(),
         label=Meta.labels["tags"],
         required=False,
     )
@@ -120,7 +121,11 @@ class BookForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(BookForm, self).__init__(*args, **kwargs)
-        self.fields["tags"].queryset = Tag.objects.all()
+        self.fields["tags"].widget.attrs.update(
+            {
+                "style": "width: 100%;",
+            }
+        )
         
         self.fields["categories"].queryset = Item.objects.filter(
             type__identifier="book_category"

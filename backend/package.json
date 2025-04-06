@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "theme": "file:theme/static_src"
+  }
+}

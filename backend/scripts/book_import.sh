@@ -1,0 +1,10 @@
+python manage.py import classifier.admin.ItemResource classifier/data/classifier.json --encoding utf8 --format json --no-input
+python manage.py import person.models.PersonResource person/data/person.json --encoding utf8 --format json --no-input
+python manage.py import book.models.resources.BookResource book/data/book.json --encoding utf8 --format json --no-input
+python manage.py import book.models.resources.BookNameResource book/data/book_name.json --encoding utf8 --format json --no-input
+python manage.py import book.models.resources.BookResumeResource book/data/book_resumes.json --encoding utf8 --format json --no-input
+python manage.py import book.models.resources.BookExtraResource book/data/book_extras.json --encoding utf8 --format json --no-input
+python manage.py import book.models.resources.BookLanguageResource book/data/book_language.json --encoding utf8 --format json --no-input
+python manage.py import book.models.resources.BookDepartmentResource book/data/book_departments.json --encoding utf8 --format json --no-input
+python manage.py import book.models.resources.BookCategoryResource book/data/book_categories.json --encoding utf8 --format json --no-input
+python manage.py import book.models.resources.BookPersonResource book/data/book_person.json --encoding utf8 --format json --no-input

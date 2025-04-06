@@ -9,7 +9,10 @@
     "dev": "cross-env NODE_ENV=development tailwindcss --postcss -i ./src/styles.css -o ../static/assets/styles.css -w",
     "tailwindcss": "node ./node_modules/tailwindcss/lib/cli.js"
   },
-  "keywords": ["django", "tailwind"],
+  "keywords": [
+    "django",
+    "tailwind"
+  ],
   "author": "jgkarl",
   "license": "MIT",
   "devDependencies": {
