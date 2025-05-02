@@ -1,24 +1,12 @@
-{% extends 'layouts/base.html' %} 
+{% extends 'layouts/book_main.html' %}
 
-{% block title %}Search{% endblock title %}
+{% block title %}
+    Search
+{% endblock %}
 
 {% block content %}
-
-<div class="flex flex-col w-full h-full">
-    <nav class="w-full bg-white drop-shadow-md shadow-gray-500/50">
-        <div class="container mx-auto py-4 flex justify-between items-center">
-            <a href="/" class="text-lg font-semibold text-gray-800">Diplomitööd</a>
-            <ul class="flex space-x-4">
-                <li><a href="/about" class="text-gray-600 hover:underline hover:text-gray-800">Projektist</a></li>
-                <li><a href="/search" class="text-gray-600 hover:underline hover:text-gray-800">Otsing</a></li>
-                <li><a href="/contact" class="text-gray-600 hover:underline hover:text-gray-800">Kontakt</a></li>
-            </ul>
-        </div>
-    </nav>
-    <div class="flex w-full h-screen bg-gray-100">
+    <div class="flex">
         {% include 'layouts/sidebar.html' with searchbar_template='search/searchbar.html' sidebar_content='v0.0.8' %}
         {% include 'layouts/content.html' %}
     </div>
-</div>
-
-{% endblock content %}
+{% endblock %}

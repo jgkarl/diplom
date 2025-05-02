@@ -3,13 +3,17 @@ from book.models import Book
 
 # Create your views here.
 
+
 def home(request):
-    return render(request, "home.html")
+    words = {"apple", "banana", "cherry", "date", "elderberry"}
+    return render(request, "home.html", {"words": words})
+
 
 def list(request):
     models = Book.objects.all()[:10]
     context = {"models": models}
     return render(request, "list.html", context)
+
 
 # Model views
 def details(request, pk):
@@ -22,4 +26,3 @@ def search(request):
     models = Book.objects.all()[:10]
     context = {"models": models}
     return render(request, "search.html", context)
-

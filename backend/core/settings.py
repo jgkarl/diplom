@@ -36,6 +36,10 @@ ALLOWED_HOSTS = list(os.getenv("ALLOWED_HOSTS", "").split(","))
 
 INTERNAL_IPS = ["127.0.0.1"]
 
+# CORS settings
+CORS_ALLOWED_ORIGINS = list(os.getenv("CORS_ALLOWED_ORIGINS", "").split(","))
+CORS_ALLOW_CREDENTIALS = True
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -47,6 +51,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Extensions
     "debug_toolbar",
+    "corsheaders",
     "import_export",
     "django_select2",
     "tailwind",
@@ -74,6 +79,7 @@ MIDDLEWARE = [
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -88,7 +94,10 @@ WSGI_APPLICATION = "core.wsgi.application"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "theme/templates"],
+        "DIRS": [
+            BASE_DIR / "theme/templates",
+            BASE_DIR / "core/templates",
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [

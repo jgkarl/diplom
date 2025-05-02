@@ -1,12 +1,14 @@
-{% extends 'layouts/base.html' %} 
+{% extends 'layouts/main.html' %}
 {% load django_vite %}
 
 {% block headscripts %}
-{{ block.super }}
-{% vite_hmr_client %}
-{% vite_asset 'frontend/src/main.js' %}
-{% endblock headscripts %}
+    {{ block.super }}
+    {% vite_hmr_client %}
+    {% vite_asset 'frontend/src/main.js' %}
+{% endblock %}
 
-{% block content %} 
-<div id="app"></div>
-{% endblock content %}
+{% block content %}
+    <div class="flex container mx-auto p-6">
+        <div id="app"></div>
+    </div>
+{% endblock %}

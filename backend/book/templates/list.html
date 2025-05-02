@@ -1,15 +1,13 @@
-{% extends 'layouts/base.html' %} 
+{% extends 'layouts/main.html' %}
 
 {% block headscripts %}
     <script src="https://unpkg.com/htmx.org@2.0.3/dist/htmx.js" integrity="sha384-BBDmZzVt6vjz5YbQqZPtFZW82o8QotoM7RUp5xOxV3nSJ8u2pSdtzFAbGKzTlKtg" crossorigin="anonymous"></script>
-{% endblock headscripts %}
+{% endblock %}
 
 {% block content %}
-
-<div class="container mx-auto">
-    <section class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {% include 'model/models.html' with models=models %}
-    </section>
-</div>
-
-{% endblock content %}
+    <div class="container mx-auto py-6">
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {% include 'model/models.html' with models=models %}
+        </section>
+    </div>
+{% endblock %}

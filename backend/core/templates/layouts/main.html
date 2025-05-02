@@ -1,0 +1,15 @@
+{% extends 'layouts/base.html' %}
+
+{% block template %}
+    {% block navbar %}
+        {% include 'partials/navbar.html' %}
+    {% endblock %}
+    <div class="flex-grow w-full">
+        {% block content %}
+
+        {% endblock %}
+    </div>
+    {% block footer %}
+        {% include 'partials/footer.html' %}
+    {% endblock %}
+{% endblock %}

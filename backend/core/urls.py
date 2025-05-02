@@ -14,6 +14,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path, include
 from django.http import HttpResponse
@@ -21,19 +22,23 @@ from debug_toolbar.toolbar import debug_toolbar_urls
 from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.conf import settings
-
+from core.views import about, contact
 
 
 urlpatterns = i18n_patterns(
-    path('', lambda request: HttpResponse('', status=302, headers={'Location': '/book/search'})),
-    path('admin/', admin.site.urls),
-    path('api/', include('api.urls')),
-    path('book/', include('book.urls')),
+    path("", lambda request: HttpResponse("", status=302, headers={"Location": "/book/search"}), name="homePage"),
+    path("search", lambda request: HttpResponse("", status=302, headers={"Location": "/book/search"}), name="searchPage"),
+    path("about", about, name="aboutPage"),
+    path("contact", contact, name="contactPage"),
+
+    path("admin/", admin.site.urls),
+    path("api/", include("api.urls")),
+    path("book/", include("book.urls")),
     # If no prefix is given, use the default language
-    prefix_default_language=False
+    prefix_default_language=False,
 )
 
 if settings.DEBUG:
     urlpatterns += debug_toolbar_urls()
-    urlpatterns += path("__reload__/", include("django_browser_reload.urls")),
+    urlpatterns += (path("__reload__/", include("django_browser_reload.urls")),)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

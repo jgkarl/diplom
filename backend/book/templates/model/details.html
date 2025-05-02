@@ -1,10 +1,20 @@
-{% extends 'layouts/base.html' %} 
+{% extends 'layouts/main.html' %}
 
 {% block content %}
-<div class="card-body">
-    <p><span class="font-semibold">Token:</span> {{ model.token }}</p>
-    <p><span class="font-semibold">Published:</span> {{ model.published }}</p>
-    <p><span class="font-semibold">Authors:</span> {{ model.authors|join:", " }}</p>
-    <p><span class="font-semibold">Supervisors:</span> {{ model.supervisors|join:", " }}</p>
-</div>
-{% endblock content %}
+    <div class="container mx-auto py-6">
+        <div class="card-body">
+            <p>
+                <span class="font-semibold">Token:</span> {{ model.token }}
+            </p>
+            <p>
+                <span class="font-semibold">Published:</span> {{ model.published }}
+            </p>
+            <p>
+                <span class="font-semibold">Authors:</span> {{ model.authors|join:', ' }}
+            </p>
+            <p>
+                <span class="font-semibold">Supervisors:</span> {{ model.supervisors|join:', ' }}
+            </p>
+        </div>
+    </div>
+{% endblock %}
